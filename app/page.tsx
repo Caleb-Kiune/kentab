@@ -100,7 +100,7 @@ export default function HomePage() {
     { name: "Kenyan Alliance", src: "/logos/kenyan-alliance.png" },
   ]
 
-  // Testimonials data - reduced to 5
+  // Testimonials data - reduced to 3
   const testimonials = [
     {
       name: "Sarah Johnson",
@@ -125,22 +125,6 @@ export default function HomePage() {
       content:
         "I've been with Kentab Insurance for over 3 years now for my auto insurance. Their claims process is efficient and their customer service is outstanding. Highly recommend!",
       rating: 5,
-    },
-    {
-      name: "Grace Wanjiku",
-      role: "Healthcare Professional",
-      image: "/placeholder.svg?height=40&width=40",
-      content:
-        "I was looking for comprehensive health insurance for my family, and Kentab Insurance exceeded my expectations. They explained all the options clearly and helped me choose the best plan for our needs.",
-      rating: 5,
-    },
-    {
-      name: "Thomas Ochieng",
-      role: "Small Business Owner",
-      image: "/placeholder.svg?height=40&width=40",
-      content:
-        "When I started my business, I had no idea what kind of insurance I needed. Kentab Insurance guided me through the entire process and set up a comprehensive business insurance package that gives me peace of mind.",
-      rating: 4.5,
     },
   ]
 
@@ -346,36 +330,32 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mx-auto max-w-3xl py-12">
-            <Carousel autoScroll={true} autoScrollInterval={5000} visibleItems={1} className="py-4" showControls={true}>
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="p-4">
-                  <Card className="h-full border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                    <CardHeader className="pb-2">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-primary-50 p-1">
-                          <Image
-                            src={testimonial.image || "/placeholder.svg?height=40&width=40"}
-                            alt={testimonial.name}
-                            width={40}
-                            height={40}
-                            className="rounded-full"
-                          />
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg text-primary-700">{testimonial.name}</CardTitle>
-                          <CardDescription>{testimonial.role}</CardDescription>
-                        </div>
-                      </div>
-                      <StarRating rating={testimonial.rating} className="mt-2" />
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">"{testimonial.content}"</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </Carousel>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            {testimonials.slice(0, 3).map((testimonial, index) => (
+              <Card key={index} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center gap-4">
+                    <div className="rounded-full bg-primary-50 p-1">
+                      <Image
+                        src={testimonial.image || "/placeholder.svg?height=40&width=40"}
+                        alt={testimonial.name}
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg text-primary-700">{testimonial.name}</CardTitle>
+                      <CardDescription>{testimonial.role}</CardDescription>
+                    </div>
+                  </div>
+                  <StarRating rating={testimonial.rating} className="mt-2" />
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">"{testimonial.content}"</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
