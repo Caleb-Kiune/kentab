@@ -106,27 +106,86 @@ export default function HomePage() {
       name: "Sarah Johnson",
       role: "Homeowner",
       image: "/placeholder.svg?height=40&width=40",
-      content:
-        "The team at Kentab was incredibly helpful in finding the right home insurance policy for my family. They took the time to understand our needs and found us great coverage at an affordable price.",
+      content: "The team at Kentab was incredibly helpful...",
       rating: 5,
     },
     {
       name: "Michael Rodriguez",
       role: "Business Owner",
       image: "/placeholder.svg?height=40&width=40",
-      content:
-        "As a small business owner, I needed comprehensive coverage that wouldn't break the bank. Kentab provided excellent options and made the process simple and straightforward.",
+      content: "As a small business owner, I needed comprehensive coverage...",
       rating: 4.5,
     },
     {
       name: "Jane Muthoni",
       role: "Car Owner",
       image: "/placeholder.svg?height=40&width=40",
-      content:
-        "I've been with Kentab Insurance for over 3 years now for my auto insurance. Their claims process is efficient and their customer service is outstanding. Highly recommend!",
+      content: "I've been with Kentab Insurance for over 3 years...",
       rating: 5,
     },
+    {
+      name: "Daniel Otieno",
+      role: "Entrepreneur",
+      image: "/placeholder.svg?height=40&width=40",
+      content: "They really understand the unique needs of business owners.",
+      rating: 4.8,
+    },
+    {
+      name: "Aisha Khan",
+      role: "Traveler",
+      image: "/placeholder.svg?height=40&width=40",
+      content: "Their travel insurance gave me peace of mind abroad.",
+      rating: 5,
+    },
+    {
+      name: "John Kamau",
+      role: "Landlord",
+      image: "/placeholder.svg?height=40&width=40",
+      content: "Got great property insurance and support.",
+      rating: 4.6,
+    },
+    {
+      name: "Emily Njeri",
+      role: "Mother",
+      image: "/placeholder.svg?height=40&width=40",
+      content: "Kentab helped me find the best family health cover.",
+      rating: 5,
+    },
+    {
+      name: "Paul Mwangi",
+      role: "Consultant",
+      image: "/placeholder.svg?height=40&width=40",
+      content: "Superb customer service and value for money.",
+      rating: 4.7,
+    },
   ]
+  
+  // const testimonials = [
+  //   {
+  //     name: "Sarah Johnson",
+  //     role: "Homeowner",
+  //     image: "/placeholder.svg?height=40&width=40",
+  //     content:
+  //       "The team at Kentab was incredibly helpful in finding the right home insurance policy for my family. They took the time to understand our needs and found us great coverage at an affordable price.",
+  //     rating: 5,
+  //   },
+  //   {
+  //     name: "Michael Rodriguez",
+  //     role: "Business Owner",
+  //     image: "/placeholder.svg?height=40&width=40",
+  //     content:
+  //       "As a small business owner, I needed comprehensive coverage that wouldn't break the bank. Kentab provided excellent options and made the process simple and straightforward.",
+  //     rating: 4.5,
+  //   },
+  //   {
+  //     name: "Jane Muthoni",
+  //     role: "Car Owner",
+  //     image: "/placeholder.svg?height=40&width=40",
+  //     content:
+  //       "I've been with Kentab Insurance for over 3 years now for my auto insurance. Their claims process is efficient and their customer service is outstanding. Highly recommend!",
+  //     rating: 5,
+  //   },
+  // ]
 
   // Insurance categories
   const insuranceCategories = [
@@ -314,6 +373,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      
       {/* Testimonials Section */}
       <section className="w-full py-16 md:py-24 bg-gray-50">
         <div className="container px-4 md:px-6">
@@ -330,35 +390,39 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            {testimonials.slice(0, 3).map((testimonial, index) => (
-              <Card key={index} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-4">
-                    <div className="rounded-full bg-primary-50 p-1">
-                      <Image
-                        src={testimonial.image || "/placeholder.svg?height=40&width=40"}
-                        alt={testimonial.name}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                      />
+          {/* Carousel */}
+          <div className="mt-8">
+            <Carousel visibleItems={3}>
+              {testimonials.map((testimonial, index) => (
+                <Card key={index} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow mx-2">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center gap-4">
+                      <div className="rounded-full bg-primary-50 p-1">
+                        <Image
+                          src={testimonial.image || "/placeholder.svg?height=40&width=40"}
+                          alt={testimonial.name}
+                          width={40}
+                          height={40}
+                          className="rounded-full"
+                        />
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg text-primary-700">{testimonial.name}</CardTitle>
+                        <CardDescription>{testimonial.role}</CardDescription>
+                      </div>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg text-primary-700">{testimonial.name}</CardTitle>
-                      <CardDescription>{testimonial.role}</CardDescription>
-                    </div>
-                  </div>
-                  <StarRating rating={testimonial.rating} className="mt-2" />
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">"{testimonial.content}"</p>
-                </CardContent>
-              </Card>
-            ))}
+                    <StarRating rating={testimonial.rating} className="mt-2" />
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">"{testimonial.content}"</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </Carousel>
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="w-full py-16 md:py-24 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
