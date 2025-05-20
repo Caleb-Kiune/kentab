@@ -54,6 +54,11 @@ export function ServicePage({
     console.log(formData)
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData({ ...formData, [id]: value })
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -90,8 +95,8 @@ export function ServicePage({
       {/* Overview Section */}
       <section className="w-full py-16 md:py-24 bg-white">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <FadeIn direction="left">
+          <div className="max-w-3xl mx-auto">
+            <FadeIn>
               <div className="space-y-6">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary-700 font-playfair">
                   Comprehensive {title} Solutions
@@ -107,17 +112,6 @@ export function ServicePage({
                     </li>
                   ))}
                 </ul>
-              </div>
-            </FadeIn>
-            <FadeIn direction="right">
-              <div className="relative rounded-xl overflow-hidden shadow-xl">
-                <Image
-                  src={heroImage}
-                  alt={title}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-auto"
-                />
               </div>
             </FadeIn>
           </div>
@@ -235,27 +229,29 @@ export function ServicePage({
               </div>
             </FadeIn>
             <FadeIn direction="right">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" suppressHydrationWarning>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>
                     <Input
                       id="name"
-                      placeholder="Your name"
+                      name="name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={handleChange}
                       required
+                      suppressHydrationWarning
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
-                      placeholder="Your email"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={handleChange}
                       required
+                      suppressHydrationWarning
                     />
                   </div>
                 </div>
@@ -263,21 +259,23 @@ export function ServicePage({
                   <Label htmlFor="phone">Phone</Label>
                   <Input
                     id="phone"
+                    name="phone"
                     type="tel"
-                    placeholder="Your phone number"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={handleChange}
                     required
+                    suppressHydrationWarning
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
-                    placeholder="Tell us about your insurance needs"
+                    name="message"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={handleChange}
                     required
+                    suppressHydrationWarning
                   />
                 </div>
                 <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white">

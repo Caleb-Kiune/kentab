@@ -196,19 +196,19 @@ export default function HomePage() {
   // Insurance categories with detailed descriptions
   const insuranceCategories = [
     {
-      title: "Personal Insurance",
-      description: "Protect yourself and your family with our personal insurance solutions",
+      title: "Motor Insurance",
+      description: "Protect your vehicle with our comprehensive motor insurance solutions",
       icon: <Users className="h-7 w-7" />,
-      link: "/services/personal",
-      features: ["Auto insurance", "Home insurance", "Personal accident", "Travel insurance"],
-      detailedDescription: `Our personal insurance solutions provide comprehensive protection for you and your family. Coverage includes:
+      link: "/services/motor",
+      features: ["Comprehensive coverage", "Third-party liability", "Personal accident", "Roadside assistance"],
+      detailedDescription: `Our motor insurance solutions provide comprehensive protection for your vehicle. Coverage includes:
 
-• Auto Insurance: Protection for your vehicles with options for liability, collision, and comprehensive coverage
-• Home Insurance: Safeguard your home and belongings against damage, theft, and liability
-• Personal Accident: Coverage for accidental injuries and disabilities
-• Travel Insurance: Protection for unexpected events during your travels
+• Comprehensive Coverage: Protection for your vehicle against damage, theft, and natural disasters
+• Third-Party Liability: Coverage for damages caused to others' property or injuries
+• Personal Accident: Coverage for accidental injuries while driving
+• Roadside Assistance: 24/7 support for breakdowns and emergencies
 
-We offer customizable plans to fit your specific needs and budget, ensuring you get the right coverage for your lifestyle.`,
+We offer customizable plans to fit your specific needs and budget, ensuring you get the right coverage for your vehicle.`,
     },
     {
       title: "Business Insurance",
@@ -346,7 +346,7 @@ We help you choose the right coverage amount and policy type based on your famil
 
       {/* Category Details Modal */}
       <Dialog open={!!selectedCategory} onOpenChange={() => setSelectedCategory(null)}>
-        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           {selectedCategory && (
             <>
               <DialogHeader className="border-b pb-4">

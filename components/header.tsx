@@ -26,14 +26,13 @@ export default function Header() {
       name: "Insurance",
       href: "/services",
       children: [
-        { name: "Personal Insurance", href: "/services/personal" },
+        { name: "Motor Insurance", href: "/services/motor" },
         { name: "Business Insurance", href: "/services/business" },
         { name: "Health Insurance", href: "/services/health" },
         { name: "Life Insurance", href: "/services/life" },
-        { name: "All Products", href: "/services" },
+        { name: "View All Products", href: "/services" },
       ],
     },
-    { name: "Claims", href: "/claims" },
     { name: "Contact", href: "/contact" },
   ]
 

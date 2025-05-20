@@ -59,11 +59,11 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/services/personal"
+                  href="/services/motor"
                   className="text-primary-200 hover:text-secondary-400 text-sm flex items-center group"
                 >
                   <ArrowRight className="h-3 w-3 mr-2 transition-transform group-hover:translate-x-1" />
-                  Personal Insurance
+                  Motor Insurance
                 </Link>
               </li>
               <li>
@@ -134,20 +134,11 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/claims"
-                  className="text-primary-200 hover:text-secondary-400 text-sm flex items-center group"
-                >
-                  <ArrowRight className="h-3 w-3 mr-2 transition-transform group-hover:translate-x-1" />
-                  Claims
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/contact"
                   className="text-primary-200 hover:text-secondary-400 text-sm flex items-center group"
                 >
                   <ArrowRight className="h-3 w-3 mr-2 transition-transform group-hover:translate-x-1" />
-                  Contact Us
+                  Contact
                 </Link>
               </li>
             </ul>

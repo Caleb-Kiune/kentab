@@ -3,11 +3,19 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { useState } from "react"
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isInsuranceOpen, setIsInsuranceOpen] = useState(false)
+
+  const insuranceLinks = [
+    { href: "/services/business", label: "Business Insurance" },
+    { href: "/services/health", label: "Health Insurance" },
+    { href: "/services/life", label: "Life Insurance" },
+    { href: "/services", label: "View All Products" }
+  ]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -31,18 +39,35 @@ export function Navbar() {
           >
             About Us
           </Link>
-          <Link
-            href="/services"
-            className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
-          >
-            Services
-          </Link>
-          <Link
-            href="/claims"
-            className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
-          >
-            Claims
-          </Link>
+          <div className="relative">
+            <button
+              onMouseEnter={() => setIsInsuranceOpen(true)}
+              onMouseLeave={() => setIsInsuranceOpen(false)}
+              className="flex items-center text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
+            >
+              Insurance
+              <ChevronDown className="ml-1 h-4 w-4" />
+            </button>
+            {isInsuranceOpen && (
+              <div 
+                className="absolute top-full left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                onMouseEnter={() => setIsInsuranceOpen(true)}
+                onMouseLeave={() => setIsInsuranceOpen(false)}
+              >
+                <div className="py-1">
+                  {insuranceLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           <Link
             href="/contact"
             className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
@@ -74,20 +99,21 @@ export function Navbar() {
             >
               About Us
             </Link>
-            <Link
-              href="/services"
-              className="block text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              href="/claims"
-              className="block text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Claims
-            </Link>
+            <div className="space-y-2">
+              <div className="text-sm font-medium text-gray-600">Insurance</div>
+              <div className="pl-4 space-y-2">
+                {insuranceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block text-sm text-gray-600 hover:text-primary-600 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <Link
               href="/contact"
               className="block text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
