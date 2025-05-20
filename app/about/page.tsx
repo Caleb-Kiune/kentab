@@ -4,6 +4,7 @@ import { CheckCircle, Users, Award } from "lucide-react"
 import { CounterAnimation } from "@/components/counter-animation"
 import { FadeIn } from "@/components/fade-in"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
+import Link from "next/link"
 
 export default function AboutPage() {
   const backgroundImages = [
@@ -17,9 +18,9 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
+      <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800">
         <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
-        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
+        <div className="container relative px-4 md:px-6 h-full flex items-center">
           <div className="flex flex-col items-center justify-center space-y-8 text-center">
             <FadeIn>
               <div className="space-y-6 max-w-4xl">
@@ -29,18 +30,6 @@ export default function AboutPage() {
                 <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
                   Your trusted partner in protection. Learn more about our mission, values, and the team behind our success.
                 </p>
-                <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
-                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-                    Our Services
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
-                  >
-                    Contact Us
-                  </Button>
-                </div>
               </div>
             </FadeIn>
           </div>
@@ -274,15 +263,17 @@ export default function AboutPage() {
                 <Button
                   size="lg"
                   className="bg-kentab-blue hover:bg-kentab-blue/90 text-white hover:shadow-md transition-all"
+                  asChild
                 >
-                  Get a Free Quote
+                  <Link href="/quote">Get a Free Quote</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="bg-white border-primary-500 text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-md transition-all"
+                  asChild
                 >
-                  Contact Us
+                  <Link href="/contact">Contact Us</Link>
                 </Button>
               </div>
             </div>

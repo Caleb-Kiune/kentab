@@ -75,8 +75,8 @@ export function ServicePage({
                   {subtitle}
                 </p>
                 <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
-                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-                    Get a Free Quote
+                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8" asChild>
+                    <Link href="/quote">Get a Free Quote</Link>
                   </Button>
                   <Button
                     size="lg"

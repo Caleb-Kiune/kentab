@@ -80,7 +80,7 @@ export default function HomePage() {
         "We provide personalized insurance solutions as unique as you are, ensuring you get exactly the coverage you need.",
       primaryButtonText: "Get a Free Quote",
       secondaryButtonText: "Our Approach",
-      primaryButtonLink: "/contact",
+      primaryButtonLink: "/quote",
       secondaryButtonLink: "/about",
       badge: "Tailored Coverage",
     },
@@ -260,9 +260,9 @@ We help you choose the right coverage amount and policy type based on your famil
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Dynamic Content */}
-      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
+      <section className="relative w-full min-h-[50vh] bg-gradient-to-r from-primary-900 to-primary-800">
         <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
-        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
+        <div className="container relative px-4 md:px-6 py-12 md:py-20 lg:py-24">
           <div className="flex flex-col items-center justify-center space-y-8 text-center">
             <FadeIn>
               <div className="space-y-6 max-w-4xl">
@@ -273,15 +273,16 @@ We help you choose the right coverage amount and policy type based on your famil
                   Comprehensive insurance solutions tailored to protect what matters most to you and your business.
                 </p>
                 <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
-                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-                    Get a Free Quote
+                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8" asChild>
+                    <Link href="/quote">Get a Free Quote</Link>
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
                     className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
+                    asChild
                   >
-                    Learn More
+                    <Link href="/about">Learn More</Link>
                   </Button>
                 </div>
               </div>
@@ -552,16 +553,16 @@ We help you choose the right coverage amount and policy type based on your famil
 
       
       {/* Testimonials Section */}
-      <section className="w-full py-16 md:py-24 bg-gray-50">
+      <section className="w-full py-16 md:py-24 bg-white">
         <div className="container px-4 md:px-6">
           <FadeIn>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary-700 font-playfair">
-                  What Our Clients Say
+                  Trusted by Our Clients
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed">
-                  Don't just take our word for it. Here's what our clients have to say about our services.
+                  Our commitment to excellence and customer satisfaction has earned us the trust of thousands of clients across Kenya.
                 </p>
               </div>
             </div>
@@ -571,31 +572,64 @@ We help you choose the right coverage amount and policy type based on your famil
           <div className="mt-8">
             <Carousel visibleItems={3}>
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow mx-2">
+                <Card key={index} className="border border-gray-100 bg-white shadow-sm hover:shadow-md transition-all duration-300 mx-2">
                   <CardHeader className="pb-2">
                     <div className="flex items-center gap-4">
-                      <div className="rounded-full bg-primary-50 p-1">
+                      <div className="relative h-16 w-16 rounded-full overflow-hidden border-2 border-primary-100">
                         <Image
-                          src={testimonial.image || "/placeholder.svg?height=40&width=40"}
+                          src={testimonial.image || "/placeholder.svg?height=64&width=64"}
                           alt={testimonial.name}
-                          width={40}
-                          height={40}
-                          className="rounded-full"
+                          fill
+                          className="object-cover"
                         />
                       </div>
                       <div>
-                        <CardTitle className="text-lg text-primary-700">{testimonial.name}</CardTitle>
-                        <CardDescription>{testimonial.role}</CardDescription>
+                        <CardTitle className="text-lg font-semibold text-primary-700">{testimonial.name}</CardTitle>
+                        <CardDescription className="text-primary-600 font-medium">{testimonial.role}</CardDescription>
                       </div>
                     </div>
-                    <StarRating rating={testimonial.rating} className="mt-2" />
+                    <div className="mt-4">
+                      <StarRating rating={testimonial.rating} className="text-primary-500" />
+                    </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600">"{testimonial.content}"</p>
+                    <div className="relative">
+                      <div className="absolute -left-2 top-0 text-4xl text-primary-100 font-serif">"</div>
+                      <p className="text-gray-600 pl-4 italic">{testimonial.content}</p>
+                      <div className="absolute -right-2 bottom-0 text-4xl text-primary-100 font-serif">"</div>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
             </Carousel>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <FadeIn direction="up" delay={100}>
+              <div className="space-y-2">
+                <div className="text-3xl font-bold text-primary-700">98%</div>
+                <p className="text-sm text-gray-600">Client Satisfaction</p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="up" delay={200}>
+              <div className="space-y-2">
+                <div className="text-3xl font-bold text-primary-700">24/7</div>
+                <p className="text-sm text-gray-600">Claims Support</p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="up" delay={300}>
+              <div className="space-y-2">
+                <div className="text-3xl font-bold text-primary-700">15+</div>
+                <p className="text-sm text-gray-600">Insurance Partners</p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="up" delay={400}>
+              <div className="space-y-2">
+                <div className="text-3xl font-bold text-primary-700">5+</div>
+                <p className="text-sm text-gray-600">Years Experience</p>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -619,7 +653,7 @@ We help you choose the right coverage amount and policy type based on your famil
                   className="bg-white text-primary-700 hover:bg-gray-100 hover:shadow-md transition-all"
                   asChild
                 >
-                  <Link href="/contact">Get a Free Quote</Link>
+                  <Link href="/quote">Get a Free Quote</Link>
                 </Button>
                 <Button
                   size="lg"

@@ -184,9 +184,9 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
+      <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800">
         <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
-        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
+        <div className="container relative px-4 md:px-6 h-full flex items-center">
           <div className="flex flex-col items-center justify-center space-y-8 text-center">
             <FadeIn>
               <div className="space-y-6 max-w-4xl">
@@ -197,15 +197,16 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                   Comprehensive insurance solutions tailored to protect what matters most to you and your business.
                 </p>
                 <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
-                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-                    Get a Free Quote
+                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8" asChild>
+                    <Link href="/quote">Get a Free Quote</Link>
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
                     className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
+                    asChild
                   >
-                    Contact Us
+                    <Link href="/contact">Contact Us</Link>
                   </Button>
                 </div>
               </div>
@@ -337,7 +338,7 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                         className="bg-primary-500 hover:bg-primary-600 text-white"
                         asChild
                       >
-                        <Link href={selectedService.link}>
+                        <Link href="/quote">
                           Get a Quote
                         </Link>
                       </Button>
@@ -413,8 +414,8 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                   coverage for your needs.
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
-                  <Button size="lg" className="bg-white text-primary-600 hover:bg-gray-100">
-                    Get a Free Quote
+                  <Button size="lg" className="bg-white text-primary-600 hover:bg-gray-100" asChild>
+                    <Link href="/quote">Get a Free Quote</Link>
                   </Button>
                   <Button
                     size="lg"

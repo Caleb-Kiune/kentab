@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { FadeIn } from "@/components/fade-in"
+import Link from "next/link"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -51,37 +52,6 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
-        <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
-        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
-          <div className="flex flex-col items-center justify-center space-y-8 text-center">
-            <FadeIn>
-              <div className="space-y-6 max-w-4xl">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair">
-                  Contact Us
-                </h1>
-                <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
-                  Get in touch with our team. We're here to help you find the right insurance solution for your needs.
-                </p>
-                <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
-                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-                    Get a Quote
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
-                  >
-                    Our Services
-                  </Button>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Form and Info */}
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">

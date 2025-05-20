@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/fade-in"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
+import Link from "next/link"
 
 interface HeroSectionProps {
   title: string
@@ -73,12 +74,22 @@ export function HeroSection({
                 <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg">
                   <h3 className="text-xl font-bold text-primary-600 mb-4">Get a Quick Quote</h3>
                   <div className="grid grid-cols-2 gap-4 mb-4">
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white">Auto</Button>
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white">Home</Button>
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white">Health</Button>
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white">Life</Button>
+                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
+                      <Link href="/quote?type=auto">Auto</Link>
+                    </Button>
+                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
+                      <Link href="/quote?type=home">Home</Link>
+                    </Button>
+                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
+                      <Link href="/quote?type=health">Health</Link>
+                    </Button>
+                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
+                      <Link href="/quote?type=life">Life</Link>
+                    </Button>
                   </div>
-                  <Button className="w-full bg-accent-500 hover:bg-accent-600 text-white">View All Products</Button>
+                  <Button className="w-full bg-accent-500 hover:bg-accent-600 text-white" asChild>
+                    <Link href="/quote">View All Products</Link>
+                  </Button>
                 </div>
               </div>
             </div>
