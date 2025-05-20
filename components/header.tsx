@@ -98,8 +98,8 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button className="bg-accent-500 hover:bg-accent-600 text-white hover:shadow-md transition-all">
-            Get a Quote
+          <Button className="bg-accent-500 hover:bg-accent-600 text-white hover:shadow-md transition-all" asChild>
+            <Link href="/quote">Get a Quote</Link>
           </Button>
           <Button
             variant="outline"
@@ -170,8 +170,8 @@ export default function Header() {
                 <Phone className="h-4 w-4 text-secondary-500" />
                 <span className="text-sm font-medium">0721315506</span>
               </div>
-              <Button className="bg-accent-500 hover:bg-accent-600 text-white w-full hover:shadow-md transition-all">
-                Get a Quote
+              <Button className="bg-accent-500 hover:bg-accent-600 text-white w-full hover:shadow-md transition-all" asChild>
+                <Link href="/quote">Get a Quote</Link>
               </Button>
               <Button
                 variant="outline"
