@@ -1,8 +1,10 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, HeartPulse, Users, Phone, Briefcase } from "lucide-react"
+import { Shield, HeartPulse, Users, Phone, Briefcase, ArrowRight } from "lucide-react"
 import { Carousel } from "@/components/carousel"
 import { StarRating } from "@/components/star-rating"
 import { LogoCarousel } from "@/components/logo-carousel"
@@ -10,8 +12,12 @@ import { FadeIn } from "@/components/fade-in"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
 import { InsuranceCategory } from "@/components/insurance-category"
 import { ChatWidget } from "@/components/chat-widget"
+import { useState } from "react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
 export default function HomePage() {
+  const [selectedCategory, setSelectedCategory] = useState<typeof insuranceCategories[0] | null>(null)
+
   // Background images for hero section
   const heroImages = [
     "/images/healthcare.png",
@@ -187,7 +193,7 @@ export default function HomePage() {
   //   },
   // ]
 
-  // Insurance categories
+  // Insurance categories with detailed descriptions
   const insuranceCategories = [
     {
       title: "Personal Insurance",
@@ -195,6 +201,14 @@ export default function HomePage() {
       icon: <Users className="h-7 w-7" />,
       link: "/services/personal",
       features: ["Auto insurance", "Home insurance", "Personal accident", "Travel insurance"],
+      detailedDescription: `Our personal insurance solutions provide comprehensive protection for you and your family. Coverage includes:
+
+• Auto Insurance: Protection for your vehicles with options for liability, collision, and comprehensive coverage
+• Home Insurance: Safeguard your home and belongings against damage, theft, and liability
+• Personal Accident: Coverage for accidental injuries and disabilities
+• Travel Insurance: Protection for unexpected events during your travels
+
+We offer customizable plans to fit your specific needs and budget, ensuring you get the right coverage for your lifestyle.`,
     },
     {
       title: "Business Insurance",
@@ -202,6 +216,14 @@ export default function HomePage() {
       icon: <Briefcase className="h-7 w-7" />,
       link: "/services/business",
       features: ["Property insurance", "Liability coverage", "Workers' compensation", "Business interruption"],
+      detailedDescription: `Our business insurance solutions protect your company from various risks. Coverage includes:
+
+• Property Insurance: Protection for buildings, equipment, and inventory
+• Liability Coverage: Protection against third-party claims and lawsuits
+• Workers' Compensation: Coverage for employee injuries and illnesses
+• Business Interruption: Protection against income loss due to covered events
+
+We provide tailored solutions for businesses of all sizes, from startups to large corporations.`,
     },
     {
       title: "Health Insurance",
@@ -209,6 +231,14 @@ export default function HomePage() {
       icon: <HeartPulse className="h-7 w-7" />,
       link: "/services/health",
       features: ["Medical coverage", "Prescription benefits", "Preventive care", "Specialist visits"],
+      detailedDescription: `Our health insurance plans provide comprehensive coverage for you and your family. Benefits include:
+
+• Medical Coverage: Hospital stays, surgeries, and treatments
+• Prescription Benefits: Coverage for essential medications
+• Preventive Care: Regular check-ups and screenings
+• Specialist Visits: Access to specialized medical care
+
+We offer various plan options to suit different needs and budgets, with access to a wide network of healthcare providers.`,
     },
     {
       title: "Life Insurance",
@@ -216,19 +246,49 @@ export default function HomePage() {
       icon: <Shield className="h-7 w-7" />,
       link: "/services/life",
       features: ["Term life insurance", "Whole life insurance", "Universal life insurance", "Final expense coverage"],
+      detailedDescription: `Our life insurance solutions provide financial security for your loved ones. Options include:
+
+• Term Life Insurance: Affordable coverage for a specific period
+• Whole Life Insurance: Permanent coverage with cash value accumulation
+• Universal Life Insurance: Flexible premiums and death benefits
+• Final Expense Coverage: Assistance with funeral and burial costs
+
+We help you choose the right coverage amount and policy type based on your family's needs and financial goals.`,
     },
   ]
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Dynamic Content */}
-      <BackgroundSlideshow
-        images={heroImages}
-        contents={heroContents}
-        interval={10000}
-        transitionDuration={2000}
-        overlayOpacity={0.7}
-      />
+      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
+        <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
+        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
+          <div className="flex flex-col items-center justify-center space-y-8 text-center">
+            <FadeIn>
+              <div className="space-y-6 max-w-4xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair">
+                  Your Trusted Insurance Partner in Kenya
+                </h1>
+                <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
+                  Comprehensive insurance solutions tailored to protect what matters most to you and your business.
+                </p>
+                <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
+                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
+                    Get a Free Quote
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
 
       {/* Insurance Categories Section */}
       <section className="w-full py-16 md:py-24 bg-gray-100">
@@ -247,15 +307,33 @@ export default function HomePage() {
           </FadeIn>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {insuranceCategories.map((category, index) => (
-              <InsuranceCategory
-                key={index}
-                title={category.title}
-                description={category.description}
-                icon={category.icon}
-                link={category.link}
-                features={category.features}
-                index={index}
-              />
+              <FadeIn key={index} direction="up" delay={index * 100}>
+                <div className="relative overflow-hidden bg-white border border-gray-100 shadow-lg rounded-xl text-center transition-all duration-300 h-full flex flex-col hover:border-primary-200 hover:shadow-xl group">
+                  <div className="p-6">
+                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-500 group-hover:bg-primary-100 transition-colors">
+                      {category.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-primary-700 mb-2 group-hover:text-primary-600 transition-colors">
+                      {category.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-4">{category.description}</p>
+                    <ul className="space-y-2 mb-6 text-left">
+                      {category.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary-500 mt-2 flex-shrink-0"></span>
+                          <span className="text-sm text-gray-600">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      onClick={() => setSelectedCategory(category)}
+                      className="inline-flex items-center text-primary-600 hover:text-white font-medium transition-all px-3 py-1 rounded hover:bg-primary-600 group-hover:font-semibold"
+                    >
+                      Learn more <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                </div>
+              </FadeIn>
             ))}
           </div>
           <div className="flex justify-center mt-12">
@@ -265,6 +343,105 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Category Details Modal */}
+      <Dialog open={!!selectedCategory} onOpenChange={() => setSelectedCategory(null)}>
+        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
+          {selectedCategory && (
+            <>
+              <DialogHeader className="border-b pb-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-full bg-primary-50">
+                    {selectedCategory.icon}
+                  </div>
+                  <div>
+                    <DialogTitle className="text-2xl font-bold text-primary-700">
+                      {selectedCategory.title}
+                    </DialogTitle>
+                    <DialogDescription className="text-gray-600 mt-1">
+                      {selectedCategory.description}
+                    </DialogDescription>
+                  </div>
+                </div>
+              </DialogHeader>
+
+              <div className="mt-6 space-y-8">
+                {/* Key Features Section */}
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-primary-700 mb-4">Key Features</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {selectedCategory.features.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <div className="mt-1">
+                          <div className="w-2 h-2 rounded-full bg-primary-500"></div>
+                        </div>
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Detailed Coverage Section */}
+                <div>
+                  <h3 className="text-lg font-semibold text-primary-700 mb-4">Coverage Details</h3>
+                  <div className="prose prose-sm max-w-none">
+                    {selectedCategory.detailedDescription.split('\n\n').map((paragraph, index) => {
+                      if (paragraph.startsWith('•')) {
+                        // This is a bullet point section
+                        const points = paragraph.split('\n').filter(p => p.trim().startsWith('•'));
+                        return (
+                          <div key={index} className="space-y-2">
+                            {points.map((point, i) => (
+                              <div key={i} className="flex items-start gap-3">
+                                <div className="mt-1.5">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-primary-500"></div>
+                                </div>
+                                <span className="text-gray-700">{point.replace('•', '').trim()}</span>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      }
+                      // Regular paragraph
+                      return (
+                        <p key={index} className="text-gray-600 mb-4">
+                          {paragraph}
+                        </p>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Call to Action */}
+                <div className="border-t pt-6">
+                  <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p className="text-gray-600 text-sm">
+                      Ready to get started? Contact us for a personalized quote.
+                    </p>
+                    <div className="flex gap-3">
+                      <Button
+                        variant="outline"
+                        onClick={() => setSelectedCategory(null)}
+                        className="border-gray-300"
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        className="bg-primary-500 hover:bg-primary-600 text-white"
+                        asChild
+                      >
+                        <Link href={selectedCategory.link}>
+                          Get a Quote
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Why Choose Us Section */}
       <section className="w-full py-16 md:py-24 bg-white">

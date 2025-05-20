@@ -16,13 +16,15 @@ export default function Footer() {
                 Subscribe to our newsletter for the latest insurance news, tips, and special offers.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <input
                 type="email"
-                placeholder="Your email address"
-                className="flex-1 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-500"
+                placeholder="Enter your email"
+                className="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               />
-              <Button className="bg-secondary-500 hover:bg-secondary-600 text-white">Subscribe</Button>
+              <Button className="bg-primary-600 hover:bg-primary-700 text-white" suppressHydrationWarning>
+                Subscribe
+              </Button>
             </div>
           </div>
         </div>

@@ -45,40 +45,35 @@ export default function ClaimsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <BackgroundSlideshow
-        images={backgroundImages}
-        interval={6000}
-        overlayOpacity={0.7}
-        className="py-20 md:py-32 lg:py-40"
-      >
-        <div className="container px-4 md:px-6">
-          <FadeIn>
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-white">
-                  Claims Center
+      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
+        <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
+        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
+          <div className="flex flex-col items-center justify-center space-y-8 text-center">
+            <FadeIn>
+              <div className="space-y-6 max-w-4xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair">
+                  File Your Insurance Claim
                 </h1>
-                <p className="mx-auto max-w-[700px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  We're here to help you through the claims process with ease and efficiency. Learn how to file a claim
-                  and track its progress.
+                <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
+                  We're here to help you through the claims process. Our team will guide you every step of the way.
                 </p>
+                <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
+                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
+                    File a Claim
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
+                  >
+                    Contact Us
+                  </Button>
+                </div>
               </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" className="bg-accent-500 hover:bg-accent-600 text-white">
-                  File a Claim
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-primary-600 border-white hover:bg-primary-600 hover:text-white transition-all"
-                >
-                  Track a Claim
-                </Button>
-              </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
-      </BackgroundSlideshow>
+      </section>
 
       {/* Claims Process */}
       <section className="w-full py-12 md:py-24 lg:py-32">

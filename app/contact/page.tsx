@@ -52,23 +52,35 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <div className="w-full py-20 md:py-32 lg:py-40 bg-gradient-to-br from-primary-600 to-primary-800">
-        <div className="container px-4 md:px-6">
-          <FadeIn>
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-white font-playfair">
+      <section className="relative w-full min-h-[80vh] bg-gradient-to-r from-primary-900 to-primary-800">
+        <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
+        <div className="container relative px-4 md:px-6 py-20 md:py-32 lg:py-40">
+          <div className="flex flex-col items-center justify-center space-y-8 text-center">
+            <FadeIn>
+              <div className="space-y-6 max-w-4xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair">
                   Contact Us
                 </h1>
-                <p className="mx-auto max-w-[700px] text-primary-100 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Have questions or ready to get started? Our team is here to help you find the right insurance
-                  coverage.
+                <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
+                  Get in touch with our team. We're here to help you find the right insurance solution for your needs.
                 </p>
+                <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4">
+                  <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
+                    Get a Quote
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8"
+                  >
+                    Our Services
+                  </Button>
+                </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Contact Form and Info */}
       <section className="w-full py-12 md:py-24 lg:py-32">
