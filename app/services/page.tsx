@@ -147,7 +147,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
         <div className="container px-4 md:px-6">
           <FadeIn>
             <div className="flex flex-col items-center space-y-4 text-center">
@@ -200,15 +200,15 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-primary-600 text-white">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <FadeIn direction="left">
+          <div className="max-w-3xl mx-auto text-center">
+            <FadeIn>
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Ready to Get Protected?</h2>
                 <p className="text-primary-100 md:text-xl/relaxed">
                   Contact us today for a free consultation and quote. Our team is ready to help you find the perfect
                   coverage for your needs.
                 </p>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
                   <Button size="lg" className="bg-white text-primary-600 hover:bg-gray-100">
                     Get a Free Quote
                   </Button>
@@ -219,19 +219,6 @@ export default function ServicesPage() {
                   >
                     Contact Us
                   </Button>
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn direction="right" delay={200}>
-              <div className="mx-auto lg:ml-auto">
-                <div className="relative rounded-xl overflow-hidden shadow-xl">
-                  <Image
-                    src="/images/customer-service.png"
-                    alt="Insurance customer service representatives ready to assist clients"
-                    width={500}
-                    height={300}
-                    className="rounded-xl object-cover w-full"
-                  />
                 </div>
               </div>
             </FadeIn>

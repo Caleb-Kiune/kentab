@@ -137,7 +137,7 @@ export default function ClaimsPage() {
       </section>
 
       {/* Claims Options */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
             <FadeIn direction="up" delay={100}>
@@ -214,8 +214,8 @@ export default function ClaimsPage() {
       {/* Emergency Claims */}
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <FadeIn direction="left">
+          <div className="max-w-3xl mx-auto text-center">
+            <FadeIn>
               <div className="space-y-4">
                 <div className="inline-block rounded-lg bg-red-100 px-3 py-1 text-sm text-red-900">
                   Emergency Claims
@@ -225,26 +225,12 @@ export default function ClaimsPage() {
                   For emergency situations requiring immediate attention, our emergency claims team is available 24/7 to
                   provide assistance and guidance.
                 </p>
-                <div className="flex items-center gap-4 rounded-lg border p-4">
+                <div className="flex items-center justify-center gap-4 rounded-lg border p-4">
                   <AlertCircle className="h-8 w-8 text-red-600" />
                   <div>
                     <h3 className="font-medium">Emergency Claims Hotline</h3>
                     <p className="text-xl font-bold">1-800-555-9999</p>
                   </div>
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn direction="right" delay={200}>
-              <div className="mx-auto lg:ml-auto">
-                <div className="relative rounded-xl overflow-hidden shadow-xl">
-                  <Image
-                    src="/images/emergency-ambulance.png"
-                    alt="Emergency ambulance at night representing urgent claims assistance"
-                    width={600}
-                    height={400}
-                    className="rounded-xl object-cover w-full"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-900/30 to-transparent"></div>
                 </div>
               </div>
             </FadeIn>

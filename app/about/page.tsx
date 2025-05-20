@@ -64,13 +64,13 @@ export default function AboutPage() {
             </FadeIn>
             <FadeIn direction="right" delay={200}>
               <div className="mx-auto lg:ml-auto">
-                <div className="relative rounded-xl overflow-hidden shadow-xl">
+                <div className="relative rounded-xl overflow-hidden shadow-xl max-w-[500px]">
                   <Image
                     src="/images/chess-strategy.png"
                     alt="Chess pieces representing strategic planning and leadership"
                     width={500}
-                    height={500}
-                    className="object-cover w-full"
+                    height={400}
+                    className="object-cover w-full h-auto"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent"></div>
                 </div>
@@ -81,7 +81,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
         <div className="container px-4 md:px-6">
           <FadeIn>
             <div className="flex flex-col items-center space-y-4 text-center">
