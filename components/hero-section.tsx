@@ -1,31 +1,11 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { FadeIn } from "@/components/fade-in"
-import { BackgroundSlideshow } from "@/components/background-slideshow"
+import { motion } from "framer-motion"
+import Image from "next/image"
 import Link from "next/link"
+import { BackgroundSlideshow } from "@/components/background-slideshow"
 
-interface HeroSectionProps {
-  title: string
-  subtitle: string
-  description: string
-  primaryButtonText: string
-  secondaryButtonText: string
-  primaryButtonLink: string
-  secondaryButtonLink: string
-  badge?: string
-}
-
-export function HeroSection({
-  title,
-  subtitle,
-  description,
-  primaryButtonText,
-  secondaryButtonText,
-  primaryButtonLink,
-  secondaryButtonLink,
-  badge,
-}: HeroSectionProps) {
+export function HeroSection() {
   const backgroundImages = [
     "/images/healthcare.png",
     "/images/autumn-umbrella.png",
@@ -35,67 +15,89 @@ export function HeroSection({
   ]
 
   return (
-    <BackgroundSlideshow
-      images={backgroundImages}
-      interval={6000}
-      overlayOpacity={0.65}
-      className="py-20 md:py-28 lg:py-32"
-    >
-      <div className="relative z-10 container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-          <FadeIn direction="left">
-            <div className="space-y-4">
-              {badge && (
-                <div className="inline-block rounded-lg bg-accent-500 px-3 py-1 text-sm text-white">{badge}</div>
-              )}
-              <h2 className="text-xl font-medium text-white/90">{subtitle}</h2>
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-white font-playfair">
-                {title}
-              </h1>
-              <p className="text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">{description}</p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" className="bg-accent-500 hover:bg-accent-600 text-white" asChild>
-                  <a href={primaryButtonLink}>{primaryButtonText}</a>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-primary-600 border-white hover:bg-primary-600 hover:text-white transition-all"
-                  asChild
-                >
-                  <a href={secondaryButtonLink}>{secondaryButtonText}</a>
-                </Button>
-              </div>
-            </div>
-          </FadeIn>
-          <FadeIn direction="right" delay={200} className="hidden lg:block">
-            <div className="mx-auto lg:ml-auto">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-2xl">
-                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-bold text-primary-600 mb-4">Get a Quick Quote</h3>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
-                      <Link href="/quote?type=auto">Auto</Link>
-                    </Button>
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
-                      <Link href="/quote?type=home">Home</Link>
-                    </Button>
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
-                      <Link href="/quote?type=health">Health</Link>
-                    </Button>
-                    <Button className="bg-primary-500 hover:bg-primary-600 text-white" asChild>
-                      <Link href="/quote?type=life">Life</Link>
-                    </Button>
-                  </div>
-                  <Button className="w-full bg-accent-500 hover:bg-accent-600 text-white" asChild>
-                    <Link href="/quote">View All Products</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
+    <section className="relative min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       </div>
-    </BackgroundSlideshow>
+
+      {/* Content */}
+      <div className="relative container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* Left Column */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex-1 text-center lg:text-left"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Your Trusted Partner in{" "}
+              <span className="text-accent-400">Insurance Solutions</span>
+            </h1>
+            <p className="text-lg md:text-xl text-primary-100 mb-8 max-w-2xl mx-auto lg:mx-0">
+              Comprehensive insurance coverage tailored to your needs. Protect what matters most with Kentab Insurance.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-accent-500 hover:bg-accent-600 rounded-lg transition-colors duration-200"
+              >
+                Get a Quote
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white border border-white/20 hover:bg-white/10 rounded-lg transition-colors duration-200"
+              >
+                Explore Services
+              </Link>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Column */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="flex-1 relative"
+        >
+          <div className="relative w-full max-w-lg mx-auto">
+            <div className="absolute inset-0 bg-accent-500/20 rounded-full blur-3xl" />
+            <BackgroundSlideshow
+              images={backgroundImages}
+              duration={5000}
+              className="relative rounded-2xl shadow-2xl overflow-hidden aspect-square"
+            />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <motion.div
+            animate={{
+              y: [0, 12, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+            className="w-1.5 h-1.5 bg-white rounded-full mt-2"
+          />
+        </div>
+      </motion.div>
+    </section>
   )
 }

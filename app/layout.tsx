@@ -4,8 +4,9 @@ import { Playfair_Display, Lora } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TopBar } from "@/components/top-bar"
 import Header from "@/components/header"
-import Footer from "@/components/footer"
+import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/app/scroll-to-top"
+import { ChatWidget } from "@/components/chat-widget"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>

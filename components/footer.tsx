@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 
-export default function Footer() {
+export function Footer() {
   const [year, setYear] = useState("")
 
   useEffect(() => {
@@ -190,3 +190,6 @@ export default function Footer() {
     </footer>
   )
 }
+
+
+

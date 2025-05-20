@@ -1,281 +1,377 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
+import { ArrowUp, Mail, Phone, MapPin, Clock, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
-import { FadeIn } from "@/components/fade-in"
-import Link from "next/link"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
+import { useInView } from "react-intersection-observer"
+
+// Animation variants
+const containerAnimation = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemAnimation = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+}
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    insuranceType: "",
-    message: "",
-  })
-
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  // Handle theme mounting
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, insuranceType: value }))
-  }
+  // Handle reduced motion preference
+  const prefersReducedMotion = typeof window !== 'undefined' 
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+    : false
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        insuranceType: "",
-        message: "",
-      })
-    }, 1500)
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    
+    setIsSubmitting(false)
+    setIsSubmitted(true)
   }
+
+  const contactInfo = [
+    {
+      icon: <Mail className="h-6 w-6 text-[var(--color-accent)]" />,
+      title: "Email Us",
+      content: "info@kentab.com",
+      link: "mailto:info@kentab.com",
+    },
+    {
+      icon: <Phone className="h-6 w-6 text-[var(--color-accent)]" />,
+      title: "Call Us",
+      content: "+1 (555) 123-4567",
+      link: "tel:+15551234567",
+    },
+    {
+      icon: <MapPin className="h-6 w-6 text-[var(--color-accent)]" />,
+      title: "Visit Us",
+      content: "123 Insurance Street, Suite 100, New York, NY 10001",
+      link: "https://maps.google.com",
+    },
+    {
+      icon: <Clock className="h-6 w-6 text-[var(--color-accent)]" />,
+      title: "Business Hours",
+      content: "Monday - Friday: 9:00 AM - 6:00 PM",
+      link: null,
+    },
+  ]
+
+  const teamMembers = [
+    {
+      name: "Sarah Johnson",
+      role: "Insurance Specialist",
+      image: "/team/sarah.jpg",
+    },
+    {
+      name: "Michael Chen",
+      role: "Claims Manager",
+      image: "/team/michael.jpg",
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Customer Service Lead",
+      image: "/team/emily.jpg",
+    },
+  ]
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Contact Form and Info */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-            {/* Contact Form */}
-            <FadeIn direction="left">
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tight text-kentab-blue font-playfair">Get in Touch</h2>
-                  <p className="text-gray-500">
-                    Fill out the form below and one of our insurance specialists will contact you shortly.
-                  </p>
-                </div>
+      {/* Hero Section */}
+      <section className="relative w-full py-20 md:py-28 lg:py-32 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)]/90">
+        <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+        <div className="container relative px-4 md:px-6">
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={containerAnimation}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.h1
+              variants={itemAnimation}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair mb-4"
+            >
+              Get in Touch
+            </motion.h1>
+            <motion.h2
+              variants={itemAnimation}
+              className="text-xl md:text-2xl text-primary-100"
+            >
+              Our specialists will reach out within 24 hours
+            </motion.h2>
+          </motion.div>
+        </div>
+      </section>
 
-                {isSubmitted ? (
-                  <div className="rounded-lg border border-kentab-green/20 bg-[#e6f4e6] p-6 text-center">
-                    <h3 className="text-xl font-medium text-kentab-blue font-playfair">Thank You!</h3>
-                    <p className="mt-2 text-gray-700">
-                      Your message has been received. One of our representatives will contact you shortly.
-                    </p>
-                    <Button
-                      className="mt-4 bg-kentab-green hover:bg-kentab-green/90 text-white hover:shadow-md transition-all"
-                      onClick={() => setIsSubmitted(false)}
-                    >
-                      Send Another Message
-                    </Button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="John Doe"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="grid gap-4 sm:grid-cols-2">
+      {/* Contact Form Section */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-white to-[var(--color-secondary)] dark:from-gray-900 dark:to-gray-800">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-12 lg:grid-cols-2">
+            {/* Contact Form */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                  Send Us a Message
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Fill out the form below and we'll get back to you as soon as possible.
+                </p>
+              </div>
+
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                  >
+                    <div className="grid gap-6 md:grid-cols-2">
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
+                        <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Name
+                        </label>
+                        <Input
+                          id="name"
+                          placeholder="John Doe"
+                          required
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Email
+                        </label>
                         <Input
                           id="email"
-                          name="email"
                           type="email"
                           placeholder="john@example.com"
                           required
-                          value={formData.email}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          placeholder="0700000000"
-                          required
-                          value={formData.phone}
-                          onChange={handleChange}
+                          className="w-full"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="insuranceType">Insurance Type</Label>
-                      <Select value={formData.insuranceType} onValueChange={handleSelectChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select insurance type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="home">Home Insurance</SelectItem>
-                          <SelectItem value="auto">Auto Insurance</SelectItem>
-                          <SelectItem value="health">Health Insurance</SelectItem>
-                          <SelectItem value="life">Life Insurance</SelectItem>
-                          <SelectItem value="business">Business Insurance</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Message
+                      </label>
                       <Textarea
                         id="message"
-                        name="message"
                         placeholder="How can we help you?"
                         required
-                        value={formData.message}
-                        onChange={handleChange}
+                        className="min-h-[150px]"
                       />
                     </div>
                     <Button
                       type="submit"
-                      className="w-full bg-kentab-blue hover:bg-kentab-blue/90 text-white hover:shadow-md transition-all"
                       disabled={isSubmitting}
+                      className={cn(
+                        "w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white",
+                        "hover:opacity-90 transition-all duration-300",
+                        "relative overflow-hidden group"
+                      )}
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      <span className="relative z-10">
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </span>
+                      {isSubmitting && (
+                        <motion.div
+                          className="absolute inset-0 bg-white/20"
+                          initial={{ x: "-100%" }}
+                          animate={{ x: "100%" }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                        />
+                      )}
                     </Button>
-                  </form>
+
+                    <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-[var(--color-accent)]" />
+                        We reply within 24 hours
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-[var(--color-accent)]" />
+                        No obligation quote
+                      </li>
+                    </ul>
+                  </motion.form>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, rotateX: -90 }}
+                    animate={{ opacity: 1, rotateX: 0 }}
+                    className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg text-center"
+                  >
+                    <div className="w-16 h-16 bg-[var(--color-accent)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Check className="h-8 w-8 text-[var(--color-accent)]" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary-700 dark:text-primary-300 mb-2">
+                      Thank You!
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Your message has been sent successfully. We'll get back to you soon.
+                    </p>
+                  </motion.div>
                 )}
+              </AnimatePresence>
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                  Contact Information
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Reach out to us through any of these channels.
+                </p>
               </div>
-            </FadeIn>
 
-            {/* Contact Information */}
-            <FadeIn direction="right" delay={200}>
-              <div className="space-y-8">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tight text-kentab-blue font-playfair">
-                    Contact Information
-                  </h2>
-                  <p className="text-gray-500">Reach out to us directly or visit our office during business hours.</p>
-                </div>
+              <div className="grid gap-6">
+                {contactInfo.map((info, index) => (
+                  <motion.a
+                    key={index}
+                    href={info.link || undefined}
+                    target={info.link?.startsWith('http') ? '_blank' : undefined}
+                    rel={info.link?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className={cn(
+                      "p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300",
+                      info.link && "cursor-pointer"
+                    )}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-full bg-[var(--color-accent)]/10">
+                        {info.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-primary-700 dark:text-primary-300">
+                          {info.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400 mt-1">
+                          {info.content}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-kentab-green mt-1" />
-                    <div>
-                      <h3 className="font-medium text-kentab-blue font-playfair">Office Address</h3>
-                      <p className="text-gray-500">
-                        Blessed House Thika Road
-                        <br />
-                        Suite 22, Nairobi, Kenya
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-kentab-green mt-1" />
-                    <div>
-                      <h3 className="font-medium text-kentab-blue font-playfair">Phone</h3>
-                      <p className="text-gray-500">0721315506</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-kentab-green mt-1" />
-                    <div>
-                      <h3 className="font-medium text-kentab-blue font-playfair">Email</h3>
-                      <p className="text-gray-500">kentabinsurance@gmail.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Clock className="h-6 w-6 text-kentab-green mt-1" />
-                    <div>
-                      <h3 className="font-medium text-kentab-blue font-playfair">Business Hours</h3>
-                      <p className="text-gray-500">
-                        Monday - Friday: 8:00 AM - 5:00 PM
-                        <br />
-                        Saturday: 9:00 AM - 1:00 PM
-                        <br />
-                        Sunday: Closed
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-lg border border-kentab-green/20 p-6">
-                  <h3 className="text-lg font-medium mb-4 text-kentab-blue font-playfair">Our Team</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-kentab-blue font-playfair">Tabitha Kiune</span>
-                      <span className="text-sm text-gray-500">- Director</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-kentab-blue font-playfair">Caleb Kiune</span>
-                      <span className="text-sm text-gray-500">- Operations Manager</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-kentab-blue font-playfair">Lilian Muriuki</span>
-                      <span className="text-sm text-gray-500">- Claims Manager</span>
-                    </div>
-                  </div>
+              {/* Team Section */}
+              <div className="mt-12">
+                <h2 className="text-3xl font-bold text-primary-700 dark:text-primary-300 mb-6">
+                  Our Team
+                </h2>
+                <div className="grid gap-6 md:grid-cols-3">
+                  {teamMembers.map((member, index) => (
+                    <motion.div
+                      key={index}
+                      className="group relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-sm"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="aspect-square relative">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-semibold text-primary-700 dark:text-primary-300">
+                          {member.name}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {member.role}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-900">
         <div className="container px-4 md:px-6">
-          <FadeIn>
-            <div className="flex flex-col items-center space-y-4 text-center mb-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight text-kentab-blue font-playfair">Our Location</h2>
-                <p className="mx-auto max-w-[700px] text-gray-500">
-                  Find us at Blessed House, Thika Road, Nairobi, Kenya
-                </p>
-              </div>
-            </div>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <div className="max-w-4xl mx-auto">
-              <div className="aspect-[4/3] md:aspect-[16/9] w-full rounded-xl overflow-hidden border border-kentab-green/20 shadow-md">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.818769056352!2d36.8421!3d-1.2841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMDIuOCJTIDM2wrA1MCcyNS42IkU!5e0!3m2!1sen!2ske!4v1616661080000!5m2!1sen!2ske"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Kentab Insurance Agency Location"
-                  className="w-full h-full"
-                ></iframe>
-              </div>
-              <div className="mt-4 flex justify-center">
-                <a
-                  href="https://maps.google.com/maps?q=Blessed+House+Thika+Road,+Nairobi,+Kenya"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-kentab-blue hover:text-kentab-green flex items-center gap-1"
-                >
-                  <MapPin className="h-4 w-4" /> Get directions in Google Maps
-                </a>
-              </div>
-            </div>
-          </FadeIn>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-lg"
+          >
+            <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.71277937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a165bedccab%3A0x2cb2ddf003b5ae01!2sWall%20St%2C%20New%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564750982!5m2!1sen!2s"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="relative z-10"
+            />
+          </motion.div>
         </div>
       </section>
+
+      {/* Back to Top Button */}
+      <motion.button
+        className="fixed bottom-8 right-8 p-3 rounded-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white shadow-lg hover:shadow-xl transition-shadow"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ 
+          opacity: scrollYProgress.get() > 0.1 ? 1 : 0,
+          scale: scrollYProgress.get() > 0.1 ? 1 : 0
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <ArrowUp className="h-6 w-6" />
+      </motion.button>
     </div>
   )
 }

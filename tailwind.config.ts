@@ -20,9 +20,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        playfair: ["var(--font-playfair)"],
-        lora: ["var(--font-lora)"],
-        serif: ["var(--font-lora)", "serif"],
+        playfair: ["var(--font-playfair)", "serif"],
+        lora: ["var(--font-lora)", "serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -31,18 +31,16 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0066A1", // More vibrant Kentab blue
-          foreground: "hsl(var(--primary-foreground))",
-          50: "#E6F3FC",
-          100: "#CCE7F9",
-          200: "#99CFF3",
-          300: "#66B7ED",
-          400: "#339FE7",
-          500: "#0066A1", // Main blue
-          600: "#0052A1",
-          700: "#003D76",
-          800: "#00294F",
-          900: "#001427",
+          50: "#E6EBF0",
+          100: "#CCD7E1",
+          200: "#99AFD3",
+          300: "#6687C5",
+          400: "#335FB7",
+          500: "#0D3B66", // Base primary color
+          600: "#0A2F52",
+          700: "#07233D",
+          800: "#051829",
+          900: "#020C14",
         },
         secondary: {
           DEFAULT: "#7ED321", // More vibrant Kentab green
@@ -59,6 +57,8 @@ const config = {
           900: "#192A07",
         },
         accent: {
+          orange: "#FF7A00",
+          green: "#2E8B57",
           DEFAULT: "#FF9500", // More vibrant warm accent
           foreground: "#FFFFFF",
           50: "#FFF5E6",
@@ -96,6 +96,18 @@ const config = {
           lightGreen: "#F3FCEB", // Light green for backgrounds
           warmGray: "#F9F7F4", // Warm gray for subtle backgrounds
         },
+        neutral: {
+          50: "#F5F5F5",
+          100: "#E5E5E5",
+          200: "#D4D4D4",
+          300: "#A3A3A3",
+          400: "#737373",
+          500: "#525252",
+          600: "#404040",
+          700: "#262626",
+          800: "#171717",
+          900: "#111827",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -103,6 +115,22 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "fade-out": {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        "slide-up": {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "slide-down": {
+          "0%": { transform: "translateY(-20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -113,8 +141,13 @@ const config = {
         },
       },
       animation: {
+        "fade-in": "fade-in 0.5s ease-in-out",
+        "fade-out": "fade-out 0.5s ease-in-out",
+        "slide-up": "slide-up 0.5s ease-out",
+        "slide-down": "slide-down 0.5s ease-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       backgroundImage: {
         "hero-gradient": "linear-gradient(135deg, #E6F3FC 0%, #F3FCEB 100%)",

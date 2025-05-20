@@ -1,283 +1,327 @@
+"use client"
+
+import { motion } from "framer-motion"
 import Image from "next/image"
+import { Play, Award, Users, Heart, Shield, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Users, Award } from "lucide-react"
-import { CounterAnimation } from "@/components/counter-animation"
 import { FadeIn } from "@/components/fade-in"
-import { BackgroundSlideshow } from "@/components/background-slideshow"
-import Link from "next/link"
+import { TimelineSlider } from "@/components/timeline-slider"
+import { useVideoPlayer } from "@/hooks/use-video-player"
+import { cn } from "@/lib/utils"
+
+// Timeline data
+const timelineData = [
+  {
+    year: "2010",
+    icon: <Shield className="w-8 h-8" />,
+    milestone: "Founded with a vision to provide accessible insurance solutions to Kenyans."
+  },
+  {
+    year: "2015",
+    icon: <Users className="w-8 h-8" />,
+    milestone: "Expanded operations to major cities across Kenya, serving over 10,000 clients."
+  },
+  {
+    year: "2018",
+    icon: <Award className="w-8 h-8" />,
+    milestone: "Recognized as the fastest-growing insurance agency in East Africa."
+  },
+  {
+    year: "2020",
+    icon: <Heart className="w-8 h-8" />,
+    milestone: "Launched innovative digital insurance solutions during the pandemic."
+  },
+  {
+    year: "2023",
+    icon: <Star className="w-8 h-8" />,
+    milestone: "Achieved ISO certification and expanded our service portfolio."
+  }
+]
+
+// Team members data
+const teamMembers = [
+  {
+    name: "John Doe",
+    title: "CEO & Founder",
+    image: "/team/ceo.jpg"
+  },
+  {
+    name: "Jane Smith",
+    title: "Head of Operations",
+    image: "/team/operations.jpg"
+  },
+  {
+    name: "Mike Johnson",
+    title: "Claims Director",
+    image: "/team/claims.jpg"
+  },
+  {
+    name: "Sarah Williams",
+    title: "Customer Relations",
+    image: "/team/customer.jpg"
+  }
+]
+
+// Values data
+const valuesData = [
+  {
+    title: "Integrity",
+    description: "Built trust with 98% client retention rate through transparent practices.",
+    icon: <Shield className="w-12 h-12" />,
+    color: "bg-accent-orange"
+  },
+  {
+    title: "Innovation",
+    description: "Pioneered digital claims processing, reducing settlement time by 60%.",
+    icon: <Star className="w-12 h-12" />,
+    color: "bg-accent-green"
+  },
+  {
+    title: "Excellence",
+    description: "Maintained 99.9% accuracy in policy documentation and claims processing.",
+    icon: <Award className="w-12 h-12" />,
+    color: "bg-primary-500"
+  }
+]
+
+// Partners data
+const partners = [
+  { name: "Britam Insurance", logo: "/logos/britam-new.png" },
+  { name: "Jubilee Insurance", logo: "/logos/jubilee-new.png" },
+  { name: "CIC Insurance", logo: "/logos/cic-group.webp" },
+  { name: "APA Insurance", logo: "/logos/apa-new.png" },
+  { name: "Sanlam Insurance", logo: "/logos/sanlam.png" },
+  { name: "ICEA Lion", logo: "/logos/icea-new.png" },
+  { name: "AAR Insurance", logo: "/logos/aar-new.png" },
+  { name: "Heritage Insurance", logo: "/logos/heritage-new.png" },
+  { name: "Kenyan Alliance", logo: "/logos/kenyan-alliance.png" },
+  { name: "Madison Insurance", logo: "/logos/madison-group.png" },
+  { name: "Pioneer Insurance", logo: "/logos/pioneer.png" },
+  { name: "Geminia Insurance", logo: "/logos/geminia.png" }
+]
 
 export default function AboutPage() {
-  const backgroundImages = [
-    "/images/healthcare.png",
-    "/images/autumn-umbrella.png",
-    "/images/travel-family.png",
-    "/images/home-family.png",
-    "/images/red-umbrella.png",
-  ]
+  const { videoRef, isPlaying, togglePlay } = useVideoPlayer()
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800">
-        <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
-        <div className="container relative px-4 md:px-6 h-full flex items-center">
-          <div className="flex flex-col items-center justify-center space-y-8 text-center">
-            <FadeIn>
-              <div className="space-y-6 max-w-4xl">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair">
-                  About Kentab Insurance
-                </h1>
-                <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
-                  Your trusted partner in protection. Learn more about our mission, values, and the team behind our success.
-                </p>
-              </div>
-            </FadeIn>
-          </div>
+      <section className="relative h-[80vh] w-full overflow-hidden">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/kenya-montage.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
+        <div className="relative z-10 container mx-auto px-4 h-full flex flex-col items-center justify-center text-white text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-6xl font-playfair font-bold mb-6"
+          >
+            Protecting What Matters Most
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl mb-8 max-w-2xl"
+          >
+            Your trusted partner in insurance solutions, serving Kenya with integrity and excellence since 2010.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex gap-4"
+          >
+            <Button size="lg" className="bg-accent-orange hover:bg-accent-orange/90">
+              Get a Free Quote
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              Meet Our Team
+            </Button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+      {/* Timeline Section */}
+      <section className="py-20 bg-neutral-50">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <h2 className="text-4xl font-playfair font-bold text-center mb-12">Our Journey</h2>
+            <TimelineSlider>
+              {timelineData.map((item, index) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-2 bg-primary-50 rounded-full text-primary-500">
+                      {item.icon}
+                    </div>
+                    <span className="text-2xl font-bold text-primary-500">{item.year}</span>
+                  </div>
+                  <p className="text-neutral-600">{item.milestone}</p>
+                </motion.div>
+              ))}
+            </TimelineSlider>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* CEO Video & Team Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn direction="left">
-              <div className="space-y-4">
-                <div className="inline-block rounded-lg bg-[#e6f4e6] px-3 py-1 text-sm text-kentab-blue">Our Story</div>
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-kentab-blue font-playfair">
-                  A Legacy of Protection
-                </h2>
-                <p className="text-gray-500 md:text-xl/relaxed">
-                  Kentab Insurance Agency was founded with a simple mission: to provide reliable, affordable insurance
-                  solutions with exceptional customer service. What started as a small family business has grown into a
-                  trusted insurance provider serving thousands of clients across Kenya.
-                </p>
-                <p className="text-gray-500 md:text-xl/relaxed">
-                  Through economic ups and downs, natural disasters, and changing markets, we've remained steadfast in
-                  our commitment to our clients. Our growth is built on the foundation of trust we've established with
-                  each person and business we serve.
-                </p>
+              <div className="relative aspect-video rounded-lg overflow-hidden group">
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  poster="/team/ceo-video-thumbnail.jpg"
+                >
+                  <source src="/videos/ceo-message.mp4" type="video/mp4" />
+                </video>
+                <div 
+                  className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center cursor-pointer"
+                  onClick={togglePlay}
+                >
+                  {!isPlaying && (
+                    <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Play className="w-8 h-8 text-primary-500" />
+                    </div>
+                  )}
+                </div>
               </div>
             </FadeIn>
-            <FadeIn direction="right" delay={200}>
-              <div className="mx-auto lg:ml-auto">
-                <div className="relative rounded-xl overflow-hidden shadow-xl max-w-[500px]">
-                  <Image
-                    src="/images/chess-strategy.png"
-                    alt="Chess pieces representing strategic planning and leadership"
-                    width={500}
-                    height={400}
-                    className="object-cover w-full h-auto"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent"></div>
-                </div>
+            <FadeIn direction="right">
+              <div className="grid grid-cols-2 gap-6">
+                {teamMembers.map((member, index) => (
+                  <motion.div
+                    key={member.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative aspect-square rounded-full overflow-hidden group"
+                  >
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-end p-4 text-white">
+                      <h3 className="font-bold">{member.name}</h3>
+                      <p className="text-sm">{member.title}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Our Values Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
-        <div className="container px-4 md:px-6">
+      {/* Values Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
           <FadeIn>
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-5xl text-kentab-blue font-playfair">
-                  Our Core Values
-                </h2>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  These principles guide everything we do and define who we are as an organization.
-                </p>
+            <h2 className="text-4xl font-playfair font-bold text-center mb-12">Our Values in Action</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {valuesData.map((value, index) => (
+                <motion.div
+                  key={value.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={cn(
+                    "p-8 rounded-lg text-white",
+                    value.color
+                  )}
+                >
+                  <div className="mb-4">{value.icon}</div>
+                  <h3 className="text-2xl font-bold mb-2">{value.title}</h3>
+                  <p>{value.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-20 bg-neutral-50">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <h2 className="text-4xl font-playfair font-bold text-center mb-12">Our Partners & Awards</h2>
+            <div className="relative overflow-hidden">
+              <div className="flex animate-marquee gap-12">
+                {partners.map((partner, index) => (
+                  <div
+                    key={partner.name}
+                    className="flex-shrink-0 w-32 h-32 relative transition-all"
+                  >
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                ))}
+                {/* Duplicate partners for seamless loop */}
+                {partners.map((partner, index) => (
+                  <div
+                    key={`${partner.name}-duplicate`}
+                    className="flex-shrink-0 w-32 h-32 relative transition-all"
+                  >
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </FadeIn>
-          <div className="mx-auto grid max-w-5xl gap-8 py-12 lg:grid-cols-3">
-            <FadeIn direction="up" delay={100}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#e6f4e6]">
-                  <CheckCircle className="h-6 w-6 text-kentab-green" />
-                </div>
-                <h3 className="text-xl font-bold text-kentab-blue font-playfair">Integrity</h3>
-                <p className="text-sm text-gray-500">
-                  We operate with honesty and transparency in all our dealings, always putting our clients' interests
-                  first.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={200}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#e6f4e6]">
-                  <Users className="h-6 w-6 text-kentab-green" />
-                </div>
-                <h3 className="text-xl font-bold text-kentab-blue font-playfair">Community</h3>
-                <p className="text-sm text-gray-500">
-                  We're committed to making a positive impact in the communities we serve through service and support.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={300}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#e6f4e6]">
-                  <Award className="h-6 w-6 text-kentab-green" />
-                </div>
-                <h3 className="text-xl font-bold text-kentab-blue font-playfair">Excellence</h3>
-                <p className="text-sm text-gray-500">
-                  We strive for excellence in everything we do, from customer service to the insurance products we
-                  offer.
-                </p>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <FadeIn>
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-5xl text-kentab-blue font-playfair">
-                  Meet Our Team
-                </h2>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Our experienced professionals are dedicated to finding the right insurance solutions for your needs.
-                </p>
-              </div>
-            </div>
-          </FadeIn>
-          <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-3">
-            <FadeIn direction="up" delay={100}>
-              <div className="flex flex-col items-center space-y-4">
-                <div className="relative h-40 w-40 overflow-hidden rounded-full">
-                  <Image
-                    src="/placeholder.svg?height=160&width=160"
-                    alt="Tabitha Kiune"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="space-y-2 text-center">
-                  <h3 className="text-xl font-bold text-kentab-blue font-playfair">Tabitha Kiune</h3>
-                  <p className="text-sm text-kentab-green">Director</p>
-                  <p className="text-sm text-gray-500">
-                    With extensive experience in the insurance industry, Tabitha leads our team with vision and
-                    dedication.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={200}>
-              <div className="flex flex-col items-center space-y-4">
-                <div className="relative h-40 w-40 overflow-hidden rounded-full">
-                  <Image src="/placeholder.svg?height=160&width=160" alt="Caleb Kiune" fill className="object-cover" />
-                </div>
-                <div className="space-y-2 text-center">
-                  <h3 className="text-xl font-bold text-kentab-blue font-playfair">Caleb Kiune</h3>
-                  <p className="text-sm text-kentab-green">Operations Manager</p>
-                  <p className="text-sm text-gray-500">
-                    Caleb ensures our day-to-day operations run smoothly, focusing on efficiency and customer
-                    satisfaction.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={300}>
-              <div className="flex flex-col items-center space-y-4">
-                <div className="relative h-40 w-40 overflow-hidden rounded-full">
-                  <Image
-                    src="/placeholder.svg?height=160&width=160"
-                    alt="Lilian Muriuki"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="space-y-2 text-center">
-                  <h3 className="text-xl font-bold text-kentab-blue font-playfair">Lilian Muriuki</h3>
-                  <p className="text-sm text-kentab-green">Claims Manager</p>
-                  <p className="text-sm text-gray-500">
-                    Lilian specializes in claims processing, ensuring our clients receive prompt and fair settlements.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section with Counter Animation */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-kentab-blue text-white">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <FadeIn direction="up" delay={100}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <h3 className="text-4xl font-bold font-playfair">
-                  <CounterAnimation end={5} suffix="+" />
-                </h3>
-                <p className="text-blue-100">Years in Business</p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={200}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <h3 className="text-4xl font-bold font-playfair">
-                  <CounterAnimation end={1000} suffix="+" />
-                </h3>
-                <p className="text-blue-100">Satisfied Clients</p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={300}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <h3 className="text-4xl font-bold font-playfair">
-                  <CounterAnimation end={10} suffix="+" />
-                </h3>
-                <p className="text-blue-100">Insurance Partners</p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={400}>
-              <div className="flex flex-col items-center space-y-2 text-center">
-                <h3 className="text-4xl font-bold font-playfair">
-                  <CounterAnimation end={95} suffix="%" />
-                </h3>
-                <p className="text-blue-100">Client Retention Rate</p>
-              </div>
-            </FadeIn>
-          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <FadeIn>
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-5xl text-kentab-blue font-playfair">
-                  Ready to Work With Us?
-                </h2>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Contact our team today to learn more about our insurance solutions and how we can help protect what
-                  matters most to you.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-kentab-blue hover:bg-kentab-blue/90 text-white hover:shadow-md transition-all"
-                  asChild
-                >
-                  <Link href="/quote">Get a Free Quote</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white border-primary-500 text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-md transition-all"
-                  asChild
-                >
-                  <Link href="/contact">Contact Us</Link>
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <FadeIn>
+              <div className="bg-accent-orange rounded-lg p-8 text-white text-center">
+                <h3 className="text-2xl font-bold mb-4">Ready to talk?</h3>
+                <p className="mb-6">Get a personalized quote for your insurance needs.</p>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  Get a Quote
                 </Button>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+            <FadeIn>
+              <div className="bg-accent-green rounded-lg p-8 text-white text-center">
+                <h3 className="text-2xl font-bold mb-4">Join Our Team</h3>
+                <p className="mb-6">Be part of Kenya's leading insurance agency.</p>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  View Careers
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
     </div>
