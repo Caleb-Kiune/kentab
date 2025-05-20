@@ -2,6 +2,7 @@
 
 import { ServicePage } from "@/components/service-page"
 import { Shield, Heart, Users, DollarSign, Briefcase, Star } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function LifeInsurancePage() {
   return (
