@@ -8,6 +8,7 @@ import { FadeIn } from "@/components/fade-in"
 import { TimelineSlider } from "@/components/timeline-slider"
 import { useVideoPlayer } from "@/hooks/use-video-player"
 import { cn } from "@/lib/utils"
+import { BackgroundSlideshow } from "@/components/background-slideshow"
 
 // Timeline data
 const timelineData = [
@@ -103,20 +104,22 @@ const partners = [
 export default function AboutPage() {
   const { videoRef, isPlaying, togglePlay } = useVideoPlayer()
 
+  const backgroundImages = [
+    "/images/gaurav-kumar-briYAkuuT-E-unsplash.webp",
+    "/images/kristine-wook-E1_RW3HIbUw-unsplash.webp",
+    "/images/ta-focando-LOuffSFpWQI-unsplash.webp",
+    "/images/benjamin-child-GWe0dlVD9e0-unsplash (1).jpg",
+  ]
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full overflow-hidden">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/kenya-montage.mp4" type="video/mp4" />
-        </video>
+        <BackgroundSlideshow
+          images={backgroundImages}
+          duration={5000}
+          className="absolute inset-0 opacity-20"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
         <div className="relative z-10 container mx-auto px-4 h-full flex flex-col items-center justify-center text-white text-center">
           <motion.h1
@@ -160,18 +163,19 @@ export default function AboutPage() {
               {timelineData.map((item, index) => (
                 <motion.div
                   key={item.year}
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="flex-shrink-0 w-80 bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-2 bg-primary-50 rounded-full text-primary-500">
+                    <div className="p-3 bg-primary-50 rounded-full text-primary-500">
                       {item.icon}
                     </div>
-                    <span className="text-2xl font-bold text-primary-500">{item.year}</span>
+                    <span className="text-2xl font-bold text-primary-700">{item.year}</span>
                   </div>
-                  <p className="text-neutral-600">{item.milestone}</p>
+                  <p className="text-gray-700 leading-relaxed">{item.milestone}</p>
                 </motion.div>
               ))}
             </TimelineSlider>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { motion, useAnimation, useMotionValue, useTransform } from "framer-motion"
+import { motion, useAnimation, useMotionValue } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface TimelineSliderProps {
@@ -20,12 +20,6 @@ export function TimelineSlider({ children, className }: TimelineSliderProps) {
     left: -(contentWidth - containerWidth),
     right: 0,
   }
-
-  const opacity = useTransform(
-    x,
-    [0, -contentWidth + containerWidth],
-    [0.5, 0.5]
-  )
 
   useEffect(() => {
     if (containerRef.current) {
@@ -54,7 +48,7 @@ export function TimelineSlider({ children, className }: TimelineSliderProps) {
         dragConstraints={dragConstraints}
         dragElastic={0.1}
         dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        style={{ x, opacity }}
+        style={{ x }}
         className="flex gap-8 cursor-grab active:cursor-grabbing"
       >
         {children}

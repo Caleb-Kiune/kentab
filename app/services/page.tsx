@@ -294,36 +294,36 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                 Protect what matters most with our range of insurance products designed for your peace of mind.
               </motion.p>
               <motion.div 
-                className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4"
+                className="flex flex-col items-center gap-4"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
               >
                 <Button 
                   size="lg" 
                   className={cn(
-                    "bg-white text-primary-700 hover:bg-gray-100 text-lg px-8",
-                    "transition-all duration-300 hover:scale-105",
-                    "relative overflow-hidden group"
+                    "bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white",
+                    "hover:opacity-90 transition-all duration-300"
                   )}
                   asChild
                 >
                   <Link href="/quote">
                     <span className="relative z-10">Get a Free Quote</span>
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)]"
+                      className="absolute inset-0 bg-white/20"
                       initial={{ x: "-100%" }}
-                      whileHover={{ x: 0 }}
-                      transition={{ duration: 0.3 }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.5 }}
                     />
                   </Link>
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
                   className={cn(
-                    "bg-transparent text-white border-white hover:bg-white hover:text-primary-700 text-lg px-8",
-                    "transition-all duration-300 hover:scale-105"
+                    "bg-white text-primary-700",
+                    "hover:bg-gray-100",
+                    "transition-all duration-300"
                   )}
                   asChild
                 >
@@ -683,7 +683,7 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                 Ready to Get Protected?
               </motion.h2>
               <motion.p 
-                className="text-primary-100 md:text-xl/relaxed"
+                className="text-primary-700 md:text-xl/relaxed font-semibold"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -693,7 +693,7 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                 coverage for your needs.
               </motion.p>
               <motion.div 
-                className="flex flex-col gap-2 min-[400px]:flex-row justify-center"
+                className="flex flex-col items-center gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -703,8 +703,7 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                   size="lg" 
                   className={cn(
                     "bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white",
-                    "hover:opacity-90 transition-all duration-300",
-                    "relative overflow-hidden group"
+                    "hover:opacity-90 transition-all duration-300"
                   )}
                   asChild
                 >
@@ -720,10 +719,9 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
                   className={cn(
-                    "bg-transparent text-white border-white",
-                    "hover:bg-white hover:text-primary-700",
+                    "bg-white text-primary-700",
+                    "hover:bg-gray-100",
                     "transition-all duration-300"
                   )}
                   asChild
