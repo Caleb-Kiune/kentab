@@ -1,5 +1,5 @@
 import type React from "react"
-import "@/app/globals.css"
+import "@/styles/globals.css"
 import { Playfair_Display, Lora } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TopBar } from "@/components/top-bar"
