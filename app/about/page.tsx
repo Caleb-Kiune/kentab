@@ -147,7 +147,7 @@ export default function AboutPage() {
             <Button size="lg" className="bg-accent-orange hover:bg-accent-orange/90">
               Get a Free Quote
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
               Meet Our Team
             </Button>
           </motion.div>
@@ -311,7 +311,7 @@ export default function AboutPage() {
               <div className="bg-accent-orange rounded-lg p-8 text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Ready to talk?</h3>
                 <p className="mb-6">Get a personalized quote for your insurance needs.</p>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-white text-accent-orange bg-white hover:bg-accent-orange hover:text-white">
                   Get a Quote
                 </Button>
               </div>
@@ -320,7 +320,7 @@ export default function AboutPage() {
               <div className="bg-accent-green rounded-lg p-8 text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Join Our Team</h3>
                 <p className="mb-6">Be part of Kenya's leading insurance agency.</p>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-white text-accent-green bg-white hover:bg-accent-green hover:text-white">
                   View Careers
                 </Button>
               </div>

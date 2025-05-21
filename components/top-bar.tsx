@@ -8,7 +8,7 @@ export function TopBar() {
         <div className="flex items-center space-x-6">
           <div className="flex items-center text-sm">
             <Phone className="h-3.5 w-3.5 mr-2 text-secondary-400" />
-            <span>0721315506</span>
+            <span>+254 721 315 506</span>
           </div>
           <div className="flex items-center text-sm">
             <Mail className="h-3.5 w-3.5 mr-2 text-secondary-400" />

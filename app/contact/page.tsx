@@ -69,25 +69,25 @@ export default function ContactPage() {
     {
       icon: <Mail className="h-6 w-6 text-[var(--color-accent)]" />,
       title: "Email Us",
-      content: "info@kentab.com",
-      link: "mailto:info@kentab.com",
+      content: "kentabinsurance@gmail.com",
+      link: "mailto:kentabinsurance@gmail.com",
     },
     {
       icon: <Phone className="h-6 w-6 text-[var(--color-accent)]" />,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      content: "+254 721 315 506",
+      link: "tel:+254721315506",
     },
     {
       icon: <MapPin className="h-6 w-6 text-[var(--color-accent)]" />,
       title: "Visit Us",
-      content: "123 Insurance Street, Suite 100, New York, NY 10001",
+      content: "Blessed House Thika Road, Suite 22, Nairobi, Kenya",
       link: "https://maps.google.com",
     },
     {
       icon: <Clock className="h-6 w-6 text-[var(--color-accent)]" />,
       title: "Business Hours",
-      content: "Monday - Friday: 9:00 AM - 6:00 PM",
+      content: "Monday - Friday: 8:00 AM - 5:00 PM",
       link: null,
     },
   ]
@@ -113,7 +113,7 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full py-20 md:py-28 lg:py-32 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)]/90">
+      <section className="relative w-full py-20 md:py-28 lg:py-32 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)]/90 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
         <div className="container relative px-4 md:px-6">
           <motion.div
@@ -125,16 +125,16 @@ export default function ContactPage() {
           >
             <motion.h1
               variants={itemAnimation}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair mb-4"
+              className="text-3xl font-bold tracking-tighter sm:text-4xl text-white font-playfair mb-4"
             >
               Get in Touch
             </motion.h1>
-            <motion.h2
+            <motion.p
               variants={itemAnimation}
-              className="text-xl md:text-2xl text-primary-100"
+              className="text-xl md:text-2xl lg:text-3xl text-primary-700 font-semibold"
             >
               Our specialists will reach out within 24 hours
-            </motion.h2>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -167,35 +167,93 @@ export default function ContactPage() {
                     <div className="grid gap-6 md:grid-cols-2">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          Name
+                          Full Name
                         </label>
                         <Input
                           id="name"
-                          placeholder="John Doe"
                           required
                           className="w-full"
                         />
                       </div>
                       <div className="space-y-2">
                         <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          Email
+                          Email Address
                         </label>
                         <Input
                           id="email"
                           type="email"
-                          placeholder="john@example.com"
                           required
                           className="w-full"
                         />
                       </div>
                     </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Phone Number
+                        </label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          required
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="insuranceType" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Insurance Type
+                        </label>
+                        <select
+                          id="insuranceType"
+                          required
+                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                          <option value="">Select Insurance Type</option>
+                          <option value="auto">Auto Insurance</option>
+                          <option value="home">Home Insurance</option>
+                          <option value="health">Health Insurance</option>
+                          <option value="life">Life Insurance</option>
+                          <option value="business">Business Insurance</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <label htmlFor="coverageAmount" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Desired Coverage Amount (KES)
+                        </label>
+                        <Input
+                          id="coverageAmount"
+                          type="number"
+                          placeholder="1000000"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="preferredContact" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Preferred Contact Method
+                        </label>
+                        <select
+                          id="preferredContact"
+                          required
+                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                          <option value="">Select Preferred Method</option>
+                          <option value="email">Email</option>
+                          <option value="phone">Phone Call</option>
+                          <option value="whatsapp">WhatsApp</option>
+                          <option value="sms">SMS</option>
+                        </select>
+                      </div>
+                    </div>
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Message
+                        Additional Information
                       </label>
                       <Textarea
                         id="message"
-                        placeholder="How can we help you?"
+                        placeholder="Please provide any additional details about your insurance needs, such as specific coverage requirements or questions you may have."
                         required
                         className="min-h-[150px]"
                       />
@@ -345,7 +403,7 @@ export default function ContactPage() {
           >
             <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.71277937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a165bedccab%3A0x2cb2ddf003b5ae01!2sWall%20St%2C%20New%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564750982!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8199!2d37.14478!3d-1.33472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjAnMDUuMCJTIDM3wrAwOCcxMS4yIkU!5e0!3m2!1sen!2ske!4v1645564750982!5m2!1sen!2s"
               width="100%"
               height="100%"
               style={{ border: 0 }}

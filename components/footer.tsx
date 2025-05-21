@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react"
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowRight, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 
@@ -15,8 +15,8 @@ export function Footer() {
 
   return (
     <footer className="bg-primary-900 text-gray-200">
-      <div className="container px-4 py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container px-4 py-8 md:py-10">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Image
@@ -157,11 +157,15 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-secondary-400" />
-                <span className="text-primary-200 text-sm">0721315506</span>
+                <span className="text-primary-200 text-sm">+254 721 315 506</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-secondary-400" />
                 <span className="text-primary-200 text-sm">kentabinsurance@gmail.com</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Clock className="h-5 w-5 text-secondary-400" />
+                <span className="text-primary-200 text-sm">Mon-Fri: 8:00AM - 5:00PM</span>
               </li>
               <li className="mt-4">
                 <Button
@@ -175,7 +179,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-primary-800 text-center text-primary-300 text-sm">
+        <div className="mt-8 pt-6 border-t border-primary-800 text-center text-primary-300 text-sm">
           <p>&copy; {year} Kentab Insurance Agency. All rights reserved.</p>
           <div className="mt-2 flex justify-center space-x-6">
             <Link href="/privacy" className="hover:text-secondary-400">

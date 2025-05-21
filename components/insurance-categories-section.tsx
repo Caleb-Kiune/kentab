@@ -277,14 +277,6 @@ export function InsuranceCategoriesSection() {
                             Learn More
                           </Link>
                         </Button>
-                        <Button
-                          className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white hover:opacity-90 transition-opacity"
-                          asChild
-                        >
-                          <Link href="/quote">
-                            Get a Quote
-                          </Link>
-                        </Button>
                       </div>
                     </div>
                   </motion.div>
