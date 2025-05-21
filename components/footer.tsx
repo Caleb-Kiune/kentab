@@ -181,14 +181,6 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-6 border-t border-primary-800 text-center text-primary-300 text-sm">
           <p>&copy; {year} Kentab Insurance Agency. All rights reserved.</p>
-          <div className="mt-2 flex justify-center space-x-6">
-            <Link href="/privacy" className="hover:text-secondary-400">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-secondary-400">
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

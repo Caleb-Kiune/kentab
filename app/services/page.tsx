@@ -453,14 +453,6 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                       {selectedService.description}
                     </DialogDescription>
                   </div>
-                  <motion.button
-                    onClick={() => setSelectedService(null)}
-                    className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                    whileHover={{ rotate: 90 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <X className="h-5 w-5 text-gray-500" />
-                  </motion.button>
                 </div>
               </DialogHeader>
 
@@ -567,14 +559,6 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                       >
                         <Link href={selectedService.link}>
                           Learn More
-                        </Link>
-                      </Button>
-                      <Button
-                        className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white hover:opacity-90 transition-opacity"
-                        asChild
-                      >
-                        <Link href="/quote">
-                          Get a Quote
                         </Link>
                       </Button>
                     </div>

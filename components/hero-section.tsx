@@ -62,7 +62,7 @@ export function HeroSection() {
             }}
           >
             <Link
-              href="/contact"
+              href="/quote"
               className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-accent-500 hover:bg-accent-600 rounded-lg transition-colors duration-200"
             >
               Get a Quote

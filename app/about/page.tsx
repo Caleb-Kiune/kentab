@@ -9,6 +9,7 @@ import { TimelineSlider } from "@/components/timeline-slider"
 import { useVideoPlayer } from "@/hooks/use-video-player"
 import { cn } from "@/lib/utils"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
+import Link from "next/link"
 
 // Timeline data
 const timelineData = [
@@ -311,8 +312,8 @@ export default function AboutPage() {
               <div className="bg-accent-orange rounded-lg p-8 text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Ready to talk?</h3>
                 <p className="mb-6">Get a personalized quote for your insurance needs.</p>
-                <Button size="lg" variant="outline" className="border-white text-accent-orange bg-white hover:bg-accent-orange hover:text-white">
-                  Get a Quote
+                <Button size="lg" variant="outline" className="border-white text-accent-orange bg-white hover:bg-accent-orange hover:text-white" asChild>
+                  <Link href="/quote">Get a Quote</Link>
                 </Button>
               </div>
             </FadeIn>
