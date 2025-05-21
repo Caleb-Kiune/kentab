@@ -14,8 +14,9 @@ import { Label } from "@/components/ui/label"
 import { Card } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function QuotePage() {
+function QuoteForm() {
   const searchParams = useSearchParams()
   const type = searchParams.get("type")
 
@@ -189,5 +190,13 @@ export default function QuotePage() {
         </form>
       </Card>
     </div>
+  )
+}
+
+export default function QuotePage() {
+  return (
+    <Suspense fallback={<div className="container py-16 text-center">Loading...</div>}>
+      <QuoteForm />
+    </Suspense>
   )
 }
