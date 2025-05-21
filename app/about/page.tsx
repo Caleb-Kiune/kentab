@@ -45,22 +45,22 @@ const teamMembers = [
   {
     name: "John Doe",
     title: "CEO & Founder",
-    image: "/team/ceo.jpg"
+    image: "/team/gaurav-kumar-briYAkuuT-E-unsplash.webp"
   },
   {
     name: "Jane Smith",
     title: "Head of Operations",
-    image: "/team/operations.jpg"
+    image: "/team/kristine-wook-E1_RW3HIbUw-unsplash.webp"
   },
   {
     name: "Mike Johnson",
     title: "Claims Director",
-    image: "/team/claims.jpg"
+    image: "/team/ta-focando-LOuffSFpWQI-unsplash.webp"
   },
   {
     name: "Sarah Williams",
     title: "Customer Relations",
-    image: "/team/customer.jpg"
+    image: "/team/benjamin-child-GWe0dlVD9e0-unsplash (1).jpg"
   }
 ]
 

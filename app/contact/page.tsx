@@ -94,19 +94,19 @@ export default function ContactPage() {
 
   const teamMembers = [
     {
-      name: "Sarah Johnson",
-      role: "Insurance Specialist",
-      image: "/team/sarah.jpg",
+      name: "John Doe",
+      role: "CEO & Founder",
+      image: "/team/gaurav-kumar-briYAkuuT-E-unsplash.webp",
     },
     {
-      name: "Michael Chen",
-      role: "Claims Manager",
-      image: "/team/michael.jpg",
+      name: "Jane Smith",
+      role: "Head of Operations",
+      image: "/team/kristine-wook-E1_RW3HIbUw-unsplash.webp",
     },
     {
-      name: "Emily Rodriguez",
-      role: "Customer Service Lead",
-      image: "/team/emily.jpg",
+      name: "Mike Johnson",
+      role: "Claims Director",
+      image: "/team/ta-focando-LOuffSFpWQI-unsplash.webp",
     },
   ]
 
