@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card } from "@/components/ui/card"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
-import { Shield, Car, Clock, DollarSign, Phone, FileCheck, ArrowUp, Search, Users, PiggyBank, Scale, Gift } from "lucide-react"
+import { Shield, Plane, Clock, DollarSign, Phone, FileCheck, ArrowUp, Search, Users, PiggyBank, Scale, Gift } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Global theme variables
@@ -45,13 +45,13 @@ const itemVariants = {
 // Testimonials data
 const testimonials = [
   {
-    text: "Best motor insurance coverage I've ever had!",
-    author: "John D.",
+    text: "Best travel insurance coverage I've ever had!",
+    author: "Sarah M.",
     rating: 5,
   },
   {
     text: "Quick claims processing and great service.",
-    author: "Sarah M.",
+    author: "John D.",
     rating: 5,
   },
   {
@@ -64,32 +64,32 @@ const testimonials = [
 // Benefits data with categories
 const benefits = [
   {
-    title: "Comprehensive Protection",
-    description: "Full coverage for your vehicle including accidental damage, theft, and third-party liability.",
+    title: "Comprehensive Travel Protection",
+    description: "Complete coverage for medical emergencies, trip cancellation, and lost baggage.",
     icon: <Shield className="h-6 w-6" />,
     category: "coverage",
   },
   {
-    title: "24/7 Roadside Assistance",
-    description: "Round-the-clock support for breakdowns, towing, and emergency services.",
-    icon: <Car className="h-6 w-6" />,
+    title: "24/7 Emergency Assistance",
+    description: "Round-the-clock support for medical emergencies and travel assistance.",
+    icon: <Plane className="h-6 w-6" />,
     category: "service",
   },
   {
     title: "Quick Claims Processing",
-    description: "Fast and efficient claims handling to get you back on the road quickly.",
+    description: "Fast and efficient claims handling for peace of mind.",
     icon: <Clock className="h-6 w-6" />,
     category: "claims",
   },
   {
-    title: "Flexible Payment Options",
-    description: "Choose from various payment plans that suit your budget and preferences.",
+    title: "Flexible Coverage Options",
+    description: "Customizable coverage for different types of travel and destinations.",
     icon: <DollarSign className="h-6 w-6" />,
     category: "payment",
   },
   {
     title: "Expert Support",
-    description: "Dedicated team of insurance professionals to assist you with any queries.",
+    description: "Dedicated team of travel insurance professionals to assist you.",
     icon: <Phone className="h-6 w-6" />,
     category: "service",
   },
@@ -106,27 +106,27 @@ const coverage = [
   {
     title: "What's Covered",
     items: [
-      "Comprehensive coverage",
-      "Third-party liability",
-      "Personal injury protection",
-      "Roadside assistance",
-      "Rental car coverage",
-      "Natural disaster protection",
-      "Theft protection",
-      "Medical expenses",
+      "Medical emergencies",
+      "Trip cancellation",
+      "Lost baggage",
+      "Flight delays",
+      "Emergency evacuation",
+      "Travel assistance",
+      "Personal liability",
+      "Adventure sports coverage",
     ],
   },
   {
     title: "Additional Benefits",
     items: [
-      "24/7 claims support",
-      "No-claims bonus",
-      "Flexible payment options",
-      "Multi-vehicle discounts",
-      "Safe driver rewards",
-      "Emergency assistance",
-      "Legal protection",
-      "Repair network access",
+      "24/7 emergency support",
+      "Multi-trip discounts",
+      "Family coverage options",
+      "Business travel protection",
+      "Pre-existing conditions coverage",
+      "Natural disaster protection",
+      "Political evacuation",
+      "Identity theft protection",
     ],
   },
 ]
@@ -134,24 +134,24 @@ const coverage = [
 // FAQ data
 const faq = [
   {
-    question: "What types of vehicles are covered?",
-    answer: "We provide coverage for all types of vehicles including private cars, commercial vehicles, motorcycles, and specialized vehicles. Each vehicle type has specific coverage options tailored to its unique requirements.",
+    question: "What does travel insurance cover?",
+    answer: "Travel insurance typically covers medical emergencies, trip cancellation or interruption, lost or delayed baggage, flight delays, emergency evacuation, and travel assistance services. Coverage can be customized based on your specific travel needs and destination.",
   },
   {
     question: "How do I file a claim?",
-    answer: "You can file a claim through our 24/7 claims hotline, online portal, or by visiting our office. Our claims team will guide you through the process and ensure quick resolution of your claim.",
+    answer: "You can file a claim through our 24/7 claims hotline, online portal, or by visiting our office. Our claims team will guide you through the process and ensure quick resolution of your claim. Make sure to keep all relevant documentation and receipts.",
   },
   {
     question: "What factors affect my premium?",
-    answer: "Your premium is calculated based on factors such as vehicle type, age, usage, driver's history, coverage level, and location. We offer competitive rates and various discounts for safe drivers and multiple policies.",
+    answer: "Your premium is calculated based on factors such as your age, destination, trip duration, coverage limits, and any pre-existing medical conditions. We offer competitive rates and various discounts for multiple trips and family coverage.",
   },
   {
-    question: "Is roadside assistance included?",
-    answer: "Yes, our comprehensive motor insurance includes 24/7 roadside assistance. This covers towing, battery jump-start, fuel delivery, flat tire assistance, and emergency locksmith services.",
+    question: "Is adventure sports coverage included?",
+    answer: "Yes, our travel insurance includes coverage for many adventure sports and activities. However, coverage may vary depending on the specific activity and risk level. Please check the policy details or contact us for specific coverage information.",
   },
 ]
 
-export default function MotorInsurancePage() {
+export default function TravelInsurancePage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -187,9 +187,9 @@ export default function MotorInsurancePage() {
       <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800 overflow-hidden">
         <BackgroundSlideshow
           images={[
-            "/images/motor-insurance.jpg",
-            "/images/car-accident.jpg",
-            "/images/roadside-assistance.jpg",
+            "/images/travel-insurance.jpg",
+            "/images/travel-protection.jpg",
+            "/images/travel-assistance.jpg",
           ]}
           duration={5000}
           className="absolute inset-0 opacity-20"
@@ -205,13 +205,13 @@ export default function MotorInsurancePage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair"
               variants={itemVariants}
             >
-              Motor Insurance
+              Travel Insurance
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Protect your vehicle with comprehensive coverage tailored to your needs
+              Comprehensive protection for your travel adventures
             </motion.p>
             <motion.div
               className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4"
@@ -272,10 +272,10 @@ export default function MotorInsurancePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-playfair">
-              Why Choose Our Motor Insurance
+              Why Choose Our Travel Insurance
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We provide comprehensive coverage and exceptional service to ensure your peace of mind.
+              We provide comprehensive coverage and exceptional service to ensure your peace of mind while traveling.
             </p>
           </motion.div>
 
@@ -386,7 +386,7 @@ export default function MotorInsurancePage() {
               Frequently Asked Questions
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find answers to common questions about our motor insurance services.
+              Find answers to common questions about our travel insurance services.
             </p>
           </motion.div>
 

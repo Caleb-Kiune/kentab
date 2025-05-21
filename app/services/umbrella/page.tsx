@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card } from "@/components/ui/card"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
-import { Shield, Car, Clock, DollarSign, Phone, FileCheck, ArrowUp, Search, Users, PiggyBank, Scale, Gift } from "lucide-react"
+import { Shield, Umbrella, Clock, DollarSign, Phone, FileCheck, ArrowUp, Search, Users, PiggyBank, Scale, Gift } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Global theme variables
@@ -45,13 +45,13 @@ const itemVariants = {
 // Testimonials data
 const testimonials = [
   {
-    text: "Best motor insurance coverage I've ever had!",
-    author: "John D.",
+    text: "Best umbrella insurance coverage I've ever had!",
+    author: "Sarah M.",
     rating: 5,
   },
   {
     text: "Quick claims processing and great service.",
-    author: "Sarah M.",
+    author: "John D.",
     rating: 5,
   },
   {
@@ -64,26 +64,26 @@ const testimonials = [
 // Benefits data with categories
 const benefits = [
   {
-    title: "Comprehensive Protection",
-    description: "Full coverage for your vehicle including accidental damage, theft, and third-party liability.",
+    title: "Extended Liability Protection",
+    description: "Additional coverage beyond your primary insurance policies for comprehensive protection.",
     icon: <Shield className="h-6 w-6" />,
     category: "coverage",
   },
   {
-    title: "24/7 Roadside Assistance",
-    description: "Round-the-clock support for breakdowns, towing, and emergency services.",
-    icon: <Car className="h-6 w-6" />,
+    title: "24/7 Legal Support",
+    description: "Round-the-clock access to legal assistance and defense coverage.",
+    icon: <Umbrella className="h-6 w-6" />,
     category: "service",
   },
   {
     title: "Quick Claims Processing",
-    description: "Fast and efficient claims handling to get you back on the road quickly.",
+    description: "Fast and efficient claims handling for peace of mind.",
     icon: <Clock className="h-6 w-6" />,
     category: "claims",
   },
   {
-    title: "Flexible Payment Options",
-    description: "Choose from various payment plans that suit your budget and preferences.",
+    title: "Flexible Coverage Options",
+    description: "Customizable coverage limits to suit your specific needs.",
     icon: <DollarSign className="h-6 w-6" />,
     category: "payment",
   },
@@ -106,27 +106,27 @@ const coverage = [
   {
     title: "What's Covered",
     items: [
-      "Comprehensive coverage",
-      "Third-party liability",
+      "Additional liability coverage",
+      "Legal defense costs",
       "Personal injury protection",
-      "Roadside assistance",
-      "Rental car coverage",
-      "Natural disaster protection",
-      "Theft protection",
-      "Medical expenses",
+      "Property damage liability",
+      "Worldwide coverage",
+      "Libel and slander protection",
+      "False arrest coverage",
+      "Invasion of privacy",
     ],
   },
   {
     title: "Additional Benefits",
     items: [
       "24/7 claims support",
-      "No-claims bonus",
+      "Multi-policy discounts",
       "Flexible payment options",
-      "Multi-vehicle discounts",
-      "Safe driver rewards",
+      "Family coverage options",
+      "Business liability protection",
       "Emergency assistance",
       "Legal protection",
-      "Repair network access",
+      "Asset protection",
     ],
   },
 ]
@@ -134,8 +134,8 @@ const coverage = [
 // FAQ data
 const faq = [
   {
-    question: "What types of vehicles are covered?",
-    answer: "We provide coverage for all types of vehicles including private cars, commercial vehicles, motorcycles, and specialized vehicles. Each vehicle type has specific coverage options tailored to its unique requirements.",
+    question: "What is umbrella insurance?",
+    answer: "Umbrella insurance provides additional liability coverage beyond the limits of your primary insurance policies. It acts as an extra layer of protection for your assets and future income in case of major claims or lawsuits.",
   },
   {
     question: "How do I file a claim?",
@@ -143,15 +143,15 @@ const faq = [
   },
   {
     question: "What factors affect my premium?",
-    answer: "Your premium is calculated based on factors such as vehicle type, age, usage, driver's history, coverage level, and location. We offer competitive rates and various discounts for safe drivers and multiple policies.",
+    answer: "Your premium is calculated based on factors such as your existing insurance coverage, assets, risk factors, and desired coverage limits. We offer competitive rates and various discounts for multiple policies and risk management measures.",
   },
   {
-    question: "Is roadside assistance included?",
-    answer: "Yes, our comprehensive motor insurance includes 24/7 roadside assistance. This covers towing, battery jump-start, fuel delivery, flat tire assistance, and emergency locksmith services.",
+    question: "Is worldwide coverage included?",
+    answer: "Yes, our umbrella insurance provides worldwide coverage for liability claims. This means you're protected anywhere in the world, making it ideal for frequent travelers or those with international interests.",
   },
 ]
 
-export default function MotorInsurancePage() {
+export default function UmbrellaInsurancePage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -187,9 +187,9 @@ export default function MotorInsurancePage() {
       <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800 overflow-hidden">
         <BackgroundSlideshow
           images={[
-            "/images/motor-insurance.jpg",
-            "/images/car-accident.jpg",
-            "/images/roadside-assistance.jpg",
+            "/images/umbrella-insurance.jpg",
+            "/images/legal-protection.jpg",
+            "/images/asset-protection.jpg",
           ]}
           duration={5000}
           className="absolute inset-0 opacity-20"
@@ -205,13 +205,13 @@ export default function MotorInsurancePage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair"
               variants={itemVariants}
             >
-              Motor Insurance
+              Umbrella Insurance
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Protect your vehicle with comprehensive coverage tailored to your needs
+              Extra liability protection beyond your existing insurance policies
             </motion.p>
             <motion.div
               className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4"
@@ -272,7 +272,7 @@ export default function MotorInsurancePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-playfair">
-              Why Choose Our Motor Insurance
+              Why Choose Our Umbrella Insurance
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We provide comprehensive coverage and exceptional service to ensure your peace of mind.
@@ -386,7 +386,7 @@ export default function MotorInsurancePage() {
               Frequently Asked Questions
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find answers to common questions about our motor insurance services.
+              Find answers to common questions about our umbrella insurance services.
             </p>
           </motion.div>
 

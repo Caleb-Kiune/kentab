@@ -63,7 +63,7 @@ export function ServicePage({
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative w-full min-h-[60vh] bg-gradient-to-r from-primary-900 to-primary-800">
-        <div className="absolute inset-0 bg-[url('/images/healthcare.png')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('/images/gaurav-kumar-briYAkuuT-E-unsplash.webp')] bg-cover bg-center opacity-20"></div>
         <div className="container relative px-4 md:px-6 py-20 md:py-32">
           <div className="flex flex-col items-center justify-center space-y-8 text-center">
             <FadeIn>

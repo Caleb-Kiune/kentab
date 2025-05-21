@@ -7,11 +7,10 @@ import { BackgroundSlideshow } from "@/components/background-slideshow"
 
 export function HeroSection() {
   const backgroundImages = [
-    "/images/healthcare.png",
-    "/images/autumn-umbrella.png",
-    "/images/travel-family.png",
-    "/images/home-family.png",
-    "/images/red-umbrella.png",
+    "/images/gaurav-kumar-briYAkuuT-E-unsplash.webp",
+    "/images/kristine-wook-E1_RW3HIbUw-unsplash.webp",
+    "/images/ta-focando-LOuffSFpWQI-unsplash.webp",
+    "/images/benjamin-child-GWe0dlVD9e0-unsplash (1).jpg",
   ]
 
   return (

@@ -338,10 +338,10 @@ export default function HealthInsurancePage() {
                 initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="space-y-6 flex flex-col items-center"
+                className="space-y-6 flex flex-col items-start"
               >
                 <h3 className="text-2xl font-bold text-primary-700 font-playfair">{section.title}</h3>
-                <ul className="space-y-4 w-full max-w-md">
+                <ul className="space-y-4 w-full">
                   {section.items.map((item, i) => (
                     <motion.li
                       key={i}
@@ -349,9 +349,9 @@ export default function HealthInsurancePage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-center gap-3 justify-center"
+                      className="flex items-start gap-3"
                     >
-                      <Shield className="h-5 w-5 text-primary-500 flex-shrink-0" />
+                      <Shield className="h-5 w-5 text-primary-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-600">{item}</span>
                     </motion.li>
                   ))}

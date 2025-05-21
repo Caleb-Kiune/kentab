@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card } from "@/components/ui/card"
 import { BackgroundSlideshow } from "@/components/background-slideshow"
-import { Shield, Car, Clock, DollarSign, Phone, FileCheck, ArrowUp, Search, Users, PiggyBank, Scale, Gift } from "lucide-react"
+import { Shield, Home, Clock, DollarSign, Phone, FileCheck, ArrowUp, Search, Users, PiggyBank, Scale, Gift } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Global theme variables
@@ -45,13 +45,13 @@ const itemVariants = {
 // Testimonials data
 const testimonials = [
   {
-    text: "Best motor insurance coverage I've ever had!",
-    author: "John D.",
+    text: "Best home insurance coverage I've ever had!",
+    author: "Sarah M.",
     rating: 5,
   },
   {
     text: "Quick claims processing and great service.",
-    author: "Sarah M.",
+    author: "John D.",
     rating: 5,
   },
   {
@@ -65,19 +65,19 @@ const testimonials = [
 const benefits = [
   {
     title: "Comprehensive Protection",
-    description: "Full coverage for your vehicle including accidental damage, theft, and third-party liability.",
+    description: "Full coverage for your home including structural damage, contents, and liability protection.",
     icon: <Shield className="h-6 w-6" />,
     category: "coverage",
   },
   {
-    title: "24/7 Roadside Assistance",
-    description: "Round-the-clock support for breakdowns, towing, and emergency services.",
-    icon: <Car className="h-6 w-6" />,
+    title: "24/7 Emergency Support",
+    description: "Round-the-clock assistance for emergencies and claims processing.",
+    icon: <Home className="h-6 w-6" />,
     category: "service",
   },
   {
     title: "Quick Claims Processing",
-    description: "Fast and efficient claims handling to get you back on the road quickly.",
+    description: "Fast and efficient claims handling to restore your home quickly.",
     icon: <Clock className="h-6 w-6" />,
     category: "claims",
   },
@@ -106,13 +106,13 @@ const coverage = [
   {
     title: "What's Covered",
     items: [
-      "Comprehensive coverage",
-      "Third-party liability",
-      "Personal injury protection",
-      "Roadside assistance",
-      "Rental car coverage",
+      "Building coverage",
+      "Contents protection",
+      "Liability coverage",
+      "Additional living expenses",
       "Natural disaster protection",
-      "Theft protection",
+      "Personal property coverage",
+      "Loss of use coverage",
       "Medical expenses",
     ],
   },
@@ -122,8 +122,8 @@ const coverage = [
       "24/7 claims support",
       "No-claims bonus",
       "Flexible payment options",
-      "Multi-vehicle discounts",
-      "Safe driver rewards",
+      "Multi-policy discounts",
+      "Security system discounts",
       "Emergency assistance",
       "Legal protection",
       "Repair network access",
@@ -134,8 +134,8 @@ const coverage = [
 // FAQ data
 const faq = [
   {
-    question: "What types of vehicles are covered?",
-    answer: "We provide coverage for all types of vehicles including private cars, commercial vehicles, motorcycles, and specialized vehicles. Each vehicle type has specific coverage options tailored to its unique requirements.",
+    question: "What types of properties are covered?",
+    answer: "We provide coverage for various types of properties including single-family homes, apartments, condominiums, and rental properties. Each property type has specific coverage options tailored to its unique requirements.",
   },
   {
     question: "How do I file a claim?",
@@ -143,15 +143,15 @@ const faq = [
   },
   {
     question: "What factors affect my premium?",
-    answer: "Your premium is calculated based on factors such as vehicle type, age, usage, driver's history, coverage level, and location. We offer competitive rates and various discounts for safe drivers and multiple policies.",
+    answer: "Your premium is calculated based on factors such as property type, location, construction materials, security features, coverage level, and claims history. We offer competitive rates and various discounts for security systems and multiple policies.",
   },
   {
-    question: "Is roadside assistance included?",
-    answer: "Yes, our comprehensive motor insurance includes 24/7 roadside assistance. This covers towing, battery jump-start, fuel delivery, flat tire assistance, and emergency locksmith services.",
+    question: "Is natural disaster coverage included?",
+    answer: "Yes, our comprehensive home insurance includes coverage for natural disasters such as earthquakes, floods, and storms. Additional coverage options are available for specific natural disasters based on your location and needs.",
   },
 ]
 
-export default function MotorInsurancePage() {
+export default function HomeInsurancePage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -187,9 +187,9 @@ export default function MotorInsurancePage() {
       <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800 overflow-hidden">
         <BackgroundSlideshow
           images={[
-            "/images/motor-insurance.jpg",
-            "/images/car-accident.jpg",
-            "/images/roadside-assistance.jpg",
+            "/images/home-insurance.jpg",
+            "/images/home-damage.jpg",
+            "/images/home-security.jpg",
           ]}
           duration={5000}
           className="absolute inset-0 opacity-20"
@@ -205,13 +205,13 @@ export default function MotorInsurancePage() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair"
               variants={itemVariants}
             >
-              Motor Insurance
+              Home Insurance
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Protect your vehicle with comprehensive coverage tailored to your needs
+              Protect your home and belongings with comprehensive coverage tailored to your needs
             </motion.p>
             <motion.div
               className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4"
@@ -272,7 +272,7 @@ export default function MotorInsurancePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-playfair">
-              Why Choose Our Motor Insurance
+              Why Choose Our Home Insurance
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We provide comprehensive coverage and exceptional service to ensure your peace of mind.
@@ -386,7 +386,7 @@ export default function MotorInsurancePage() {
               Frequently Asked Questions
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find answers to common questions about our motor insurance services.
+              Find answers to common questions about our home insurance services.
             </p>
           </motion.div>
 

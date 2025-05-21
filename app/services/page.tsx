@@ -57,11 +57,10 @@ export default function ServicesPage() {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null)
 
   const backgroundImages = [
-    "/images/healthcare.png",
-    "/images/autumn-umbrella.png",
-    "/images/travel-family.png",
-    "/images/home-family.png",
-    "/images/red-umbrella.png",
+    "/images/gaurav-kumar-briYAkuuT-E-unsplash.webp",
+    "/images/kristine-wook-E1_RW3HIbUw-unsplash.webp",
+    "/images/ta-focando-LOuffSFpWQI-unsplash.webp",
+    "/images/benjamin-child-GWe0dlVD9e0-unsplash (1).jpg",
   ]
 
   const services = [
@@ -89,17 +88,17 @@ export default function ServicesPage() {
 Our home insurance policies are customizable to fit your specific needs and budget. We work with multiple insurance providers to ensure you get the best coverage at competitive rates.`,
     },
     {
-      title: "Auto Insurance",
+      title: "Motor Insurance",
       description: "Coverage for your vehicles with options for liability, collision, and comprehensive.",
       icon: <Car className="h-6 w-6 text-primary-500" />,
-      link: "/services/auto",
+      link: "/services/motor",
       features: [
         "Liability protection",
         "Collision coverage",
         "Comprehensive coverage",
         "Uninsured motorist protection",
       ],
-      detailedDescription: `Our auto insurance solutions provide comprehensive protection for your vehicles. Coverage includes:
+      detailedDescription: `Our motor insurance solutions provide comprehensive protection for your vehicles. Coverage includes:
 
 • Third-Party Liability: Covers damages to other people's property or injuries
 • Comprehensive Coverage: Protection against theft, vandalism, and natural disasters
@@ -560,6 +559,15 @@ We offer flexible plans for dogs and cats, with options to add coverage for othe
                         className="border-gray-300 dark:border-gray-700"
                       >
                         Close
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="border-gray-300 dark:border-gray-700"
+                        asChild
+                      >
+                        <Link href={selectedService.link}>
+                          Learn More
+                        </Link>
                       </Button>
                       <Button
                         className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white hover:opacity-90 transition-opacity"
