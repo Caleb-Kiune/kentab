@@ -167,15 +167,6 @@ export function Footer() {
                 <Clock className="h-5 w-5 text-secondary-400" />
                 <span className="text-primary-200 text-sm">Mon-Fri: 8:00AM - 5:00PM</span>
               </li>
-              <li className="mt-4">
-                <Button
-                  variant="outline"
-                  className="border-secondary-500 text-secondary-400 hover:bg-secondary-500/10 hover:text-secondary-300"
-                  asChild
-                >
-                  <Link href="/contact">Get in Touch</Link>
-                </Button>
-              </li>
             </ul>
           </div>
         </div>
