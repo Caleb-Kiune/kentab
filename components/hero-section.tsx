@@ -14,65 +14,66 @@ export function HeroSection() {
   ]
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-      </div>
-
-      {/* Content */}
-      <div className="relative container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Left Column */}
+    <section className="relative w-full h-[calc(100vh-80px)] bg-gradient-to-r from-primary-900 to-primary-800 overflow-hidden">
+      <BackgroundSlideshow
+        images={backgroundImages}
+        duration={5000}
+        className="absolute inset-0 opacity-20"
+      />
+      <div className="container relative px-4 md:px-6 h-full flex items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex-1 text-center lg:text-left"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="flex flex-col items-center justify-center space-y-8 text-center w-full max-w-5xl mx-auto"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-playfair"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+            }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Your Trusted Partner in{" "}
-              <span className="text-accent-400">Insurance Solutions</span>
-            </h1>
-            <p className="text-lg md:text-xl text-primary-100 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Comprehensive insurance coverage tailored to your needs. Protect what matters most with Kentab Insurance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-accent-500 hover:bg-accent-600 rounded-lg transition-colors duration-200"
-              >
-                Get a Quote
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white border border-white/20 hover:bg-white/10 rounded-lg transition-colors duration-200"
-              >
-                Explore Services
-              </Link>
-            </div>
+            Your Trusted Partner in{" "}
+            <span className="text-accent-400">Insurance Solutions</span>
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } },
+            }}
+          >
+            Comprehensive insurance coverage tailored to your needs. Protect what matters most with Kentab Insurance.
+          </motion.p>
+          <motion.div
+            className="flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4 } },
+            }}
+          >
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-accent-500 hover:bg-accent-600 rounded-lg transition-colors duration-200"
+            >
+              Get a Quote
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white border border-white/20 hover:bg-white/10 rounded-lg transition-colors duration-200"
+            >
+              Explore Services
+            </Link>
           </motion.div>
-        </motion.div>
-
-        {/* Right Column */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="flex-1 relative"
-        >
-          <div className="relative w-full max-w-lg mx-auto">
-            <div className="absolute inset-0 bg-accent-500/20 rounded-full blur-3xl" />
-            <BackgroundSlideshow
-              images={backgroundImages}
-              duration={5000}
-              className="relative rounded-2xl shadow-2xl overflow-hidden aspect-square"
-            />
-          </div>
         </motion.div>
       </div>
 
