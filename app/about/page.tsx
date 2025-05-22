@@ -193,9 +193,8 @@ export default function AboutPage() {
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover"
-                  poster="/team/ceo-video-thumbnail.jpg"
                 >
-                  <source src="/videos/ceo-message.mp4" type="video/mp4" />
+                  <source src="/videos/7821854-hd-1920-1080-30fps_LTBW3Lm4.mp4" type="video/mp4" />
                 </video>
                 <div 
                   className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center cursor-pointer"
