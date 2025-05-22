@@ -14,14 +14,14 @@ import Link from "next/link"
 // Timeline data
 const timelineData = [
   {
-    year: "2010",
+    year: "2014",
     icon: <Shield className="w-8 h-8" />,
     milestone: "Founded with a vision to provide accessible insurance solutions to Kenyans."
   },
   {
-    year: "2015",
+    year: "2016",
     icon: <Users className="w-8 h-8" />,
-    milestone: "Expanded operations to major cities across Kenya, serving over 10,000 clients."
+    milestone: "Expanded operations to major cities across Kenya, serving over 500 clients."
   },
   {
     year: "2018",
@@ -43,23 +43,23 @@ const timelineData = [
 // Team members data
 const teamMembers = [
   {
-    name: "John Doe",
+    name: "Tabitha Kiune",
     title: "CEO & Founder",
     image: "/team/gaurav-kumar-briYAkuuT-E-unsplash.webp"
   },
   {
-    name: "Jane Smith",
+    name: "Caleb Kiune",
     title: "Head of Operations",
     image: "/team/kristine-wook-E1_RW3HIbUw-unsplash.webp"
   },
   {
-    name: "Mike Johnson",
+    name: "Lilian Mwaniki",
     title: "Claims Director",
     image: "/team/ta-focando-LOuffSFpWQI-unsplash.webp"
   },
   {
-    name: "Sarah Williams",
-    title: "Customer Relations",
+    name: "James Kibathi",
+    title: "Digital Marketing",
     image: "/team/benjamin-child-GWe0dlVD9e0-unsplash (1).jpg"
   }
 ]
@@ -145,10 +145,18 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex gap-4"
           >
-            <Button size="lg" className="bg-accent-orange hover:bg-accent-orange/90">
-              Get a Free Quote
+            <Button size="lg" className="bg-accent-orange hover:bg-accent-orange/90" asChild>
+              <Link href="/quote">Get a Free Quote</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="bg-transparent text-white border-white hover:bg-white/10"
+              onClick={() => {
+                const teamSection = document.getElementById('team-section');
+                teamSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Meet Our Team
             </Button>
           </motion.div>
@@ -185,7 +193,7 @@ export default function AboutPage() {
       </section>
 
       {/* CEO Video & Team Section */}
-      <section className="py-20">
+      <section id="team-section" className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn direction="left">

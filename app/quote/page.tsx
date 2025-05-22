@@ -184,7 +184,7 @@ function QuoteForm() {
             </p>
           </div>
 
-          <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700">
+          <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white">
             Submit Quote Request
           </Button>
         </form>

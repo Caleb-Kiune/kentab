@@ -6,7 +6,7 @@ import { Users, Shield, Clock, Star } from "lucide-react"
 const stats = [
   {
     icon: Users,
-    value: "10K+",
+    value: "500+",
     label: "Happy Clients",
     description: "Trusted by thousands of satisfied customers",
   },
