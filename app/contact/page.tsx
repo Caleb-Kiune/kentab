@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import { ArrowUp, Mail, Phone, MapPin, Clock, Check } from "lucide-react"
@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useInView } from "react-intersection-observer"
+import { useToast } from "@/components/ui/use-toast"
 
 // Animation variants
 const containerAnimation = {
@@ -43,6 +44,20 @@ export default function ContactPage() {
     triggerOnce: true,
     threshold: 0.1,
   })
+  const { toast } = useToast()
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    insuranceType: "",
+    coverageAmount: "",
+    preferredContact: "",
+    message: ""
+  })
+
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   // Handle theme mounting
   useEffect(() => {
@@ -54,15 +69,93 @@ export default function ContactPage() {
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
     : false
 
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {}
+    
+    // Required fields
+    if (!formData.name.trim()) newErrors.name = "Name is required"
+    if (!formData.insuranceType) newErrors.insuranceType = "Insurance type is required"
+    if (!formData.preferredContact) newErrors.preferredContact = "Preferred contact method is required"
+    if (!formData.message.trim()) newErrors.message = "Message is required"
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!formData.email) {
+      newErrors.email = "Email is required"
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    // Phone validation
+    const phoneRegex = /^\d{10,}$/
+    if (!formData.phone) {
+      newErrors.phone = "Phone number is required"
+    } else if (!phoneRegex.test(formData.phone.replace(/\D/g, ''))) {
+      newErrors.phone = "Please enter a valid phone number (10+ digits)"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = e.target
+    setFormData(prev => ({ ...prev, [id]: value }))
+    // Clear error when user starts typing
+    if (errors[id]) {
+      setErrors(prev => ({ ...prev, [id]: undefined }))
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!validateForm()) {
+      formRef.current?.scrollIntoView({ behavior: "smooth" })
+      return
+    }
+
     setIsSubmitting(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+
+    try {
+      const response = await fetch("/api/contact-message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form")
+      }
+
+      toast({
+        title: "Success!",
+        description: "✅ Your message has been sent successfully!",
+        className: "bg-green-50 border-green-200 text-green-700",
+      })
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        insuranceType: "",
+        coverageAmount: "",
+        preferredContact: "",
+        message: ""
+      })
+      setIsSubmitted(true)
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "❌ Failed to send message. Please try again later.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+      formRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   const contactInfo = [
@@ -157,6 +250,7 @@ export default function ContactPage() {
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.form
+                    ref={formRef}
                     key="form"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -172,8 +266,13 @@ export default function ContactPage() {
                         <Input
                           id="name"
                           required
-                          className="w-full"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className={cn(errors.name && "border-red-500")}
                         />
+                        {errors.name && (
+                          <p className="text-sm text-red-500">{errors.name}</p>
+                        )}
                       </div>
                       <div className="space-y-2">
                         <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -183,8 +282,13 @@ export default function ContactPage() {
                           id="email"
                           type="email"
                           required
-                          className="w-full"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className={cn(errors.email && "border-red-500")}
                         />
+                        {errors.email && (
+                          <p className="text-sm text-red-500">{errors.email}</p>
+                        )}
                       </div>
                     </div>
                     <div className="grid gap-6 md:grid-cols-2">
@@ -196,8 +300,13 @@ export default function ContactPage() {
                           id="phone"
                           type="tel"
                           required
-                          className="w-full"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className={cn(errors.phone && "border-red-500")}
                         />
+                        {errors.phone && (
+                          <p className="text-sm text-red-500">{errors.phone}</p>
+                        )}
                       </div>
                       <div className="space-y-2">
                         <label htmlFor="insuranceType" className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -206,7 +315,12 @@ export default function ContactPage() {
                         <select
                           id="insuranceType"
                           required
-                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          value={formData.insuranceType}
+                          onChange={handleInputChange}
+                          className={cn(
+                            "w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                            errors.insuranceType && "border-red-500"
+                          )}
                         >
                           <option value="">Select Insurance Type</option>
                           <option value="auto">Auto Insurance</option>
@@ -216,6 +330,9 @@ export default function ContactPage() {
                           <option value="business">Business Insurance</option>
                           <option value="other">Other</option>
                         </select>
+                        {errors.insuranceType && (
+                          <p className="text-sm text-red-500">{errors.insuranceType}</p>
+                        )}
                       </div>
                     </div>
                     <div className="grid gap-6 md:grid-cols-2">
@@ -227,6 +344,8 @@ export default function ContactPage() {
                           id="coverageAmount"
                           type="number"
                           placeholder="1000000"
+                          value={formData.coverageAmount}
+                          onChange={handleInputChange}
                           className="w-full"
                         />
                       </div>
@@ -237,7 +356,12 @@ export default function ContactPage() {
                         <select
                           id="preferredContact"
                           required
-                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          value={formData.preferredContact}
+                          onChange={handleInputChange}
+                          className={cn(
+                            "w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                            errors.preferredContact && "border-red-500"
+                          )}
                         >
                           <option value="">Select Preferred Method</option>
                           <option value="email">Email</option>
@@ -245,6 +369,9 @@ export default function ContactPage() {
                           <option value="whatsapp">WhatsApp</option>
                           <option value="sms">SMS</option>
                         </select>
+                        {errors.preferredContact && (
+                          <p className="text-sm text-red-500">{errors.preferredContact}</p>
+                        )}
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -255,29 +382,20 @@ export default function ContactPage() {
                         id="message"
                         placeholder="Please provide any additional details about your insurance needs, such as specific coverage requirements or questions you may have."
                         required
-                        className="min-h-[150px]"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className={cn("min-h-[150px]", errors.message && "border-red-500")}
                       />
+                      {errors.message && (
+                        <p className="text-sm text-red-500">{errors.message}</p>
+                      )}
                     </div>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={cn(
-                        "w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-cta-hover)] text-white",
-                        "hover:opacity-90 transition-all duration-300",
-                        "relative overflow-hidden group"
-                      )}
+                      className="w-full bg-primary-600 hover:bg-primary-700 text-white"
                     >
-                      <span className="relative z-10">
-                        {isSubmitting ? "Sending..." : "Send Message"}
-                      </span>
-                      {isSubmitting && (
-                        <motion.div
-                          className="absolute inset-0 bg-white/20"
-                          initial={{ x: "-100%" }}
-                          animate={{ x: "100%" }}
-                          transition={{ duration: 1, repeat: Infinity }}
-                        />
-                      )}
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
 
                     <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
@@ -307,6 +425,12 @@ export default function ContactPage() {
                     <p className="text-gray-600 dark:text-gray-400">
                       Your message has been sent successfully. We'll get back to you soon.
                     </p>
+                    <Button
+                      onClick={() => setIsSubmitted(false)}
+                      className="mt-6 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/90 text-white"
+                    >
+                      Send Another Message
+                    </Button>
                   </motion.div>
                 )}
               </AnimatePresence>
