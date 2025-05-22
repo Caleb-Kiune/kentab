@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export function ChatWidget() {
-  const phoneNumber = "254721315506" // Your WhatsApp number with country code
-  const defaultMessage = "Hello! I'm interested in learning more about your insurance services."
+  const phoneNumber = "254736315506" // WhatsApp number with country code
+  const defaultMessage = "Hello! I'm interested in learning more about Kentab Insurance services. Could you please provide more information?"
 
   const handleWhatsAppClick = () => {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`
