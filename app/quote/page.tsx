@@ -111,16 +111,19 @@ function QuoteForm() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://formspree.io/f/xwpojwow", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify(formData),
       })
 
+      const result = await response.json()
+
       if (!response.ok) {
-        throw new Error("Failed to submit form")
+        throw new Error(result.error || "Failed to submit form")
       }
 
       trackFormSubmission(formData)
