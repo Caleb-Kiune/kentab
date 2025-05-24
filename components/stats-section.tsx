@@ -8,7 +8,7 @@ const stats = [
     icon: Users,
     value: "500+",
     label: "Happy Clients",
-    description: "Trusted by thousands of satisfied customers",
+    description: "Trusted by hundreds of satisfied customers",
   },
   {
     icon: Shield,
