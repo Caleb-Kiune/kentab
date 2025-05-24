@@ -177,7 +177,7 @@ export default function ContactPage() {
     {
       icon: <MapPin className="h-6 w-6 text-[var(--color-accent)]" />,
       title: "Visit Us",
-      content: "Garden City Mall, Thika Road, Nairobi, Kenya",
+      content: "Blessed House, OFC Building, Thika Road, Nairobi, Kenya",
       link: "https://maps.google.com",
     },
     {
@@ -530,7 +530,7 @@ export default function ContactPage() {
           >
             <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8199!2d36.8704!3d-1.2345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17b0c6d0c0c7%3A0x1c3c3c3c3c3c3c3c!2sGarden%20City%20Mall!5e0!3m2!1sen!2ske!4v1645564750982!5m2!1sen!2ske"
+              src="https://www.google.com/maps?q=Blessed%20House%2C%20OFC%20Building%2C%20Thika%20Road%2C%20Nairobi%2C%20Kenya&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
