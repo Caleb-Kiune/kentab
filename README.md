@@ -4,11 +4,11 @@
 
 > **Your Peace, Our Concern.** > A production-grade insurance platform digitizing quotes, products, and client interactions for a Kenyan business.
 
-[**🚀 View Live Application**](https://www.kentabinsurance.com) · [**🐞 Report Bug**](https://github.com/Caleb-Kiune/kentab/issues)
+[** View Live Application**](https://www.kentabinsurance.com) · [** Report Bug**](https://github.com/Caleb-Kiune/kentab/issues)
 
 ---
 
-## 📖 About The Project
+##  About The Project
 
 **Kentab Insurance Agency** is a modern, full-stack web application designed to digitize the insurance brokerage process in Kenya. 
 
@@ -21,18 +21,18 @@ Traditionally, getting an insurance quote involves phone calls and manual paperw
 
 ---
 
-## ⚡ Key Features
+##  Key Features
 
-* **🛡️ Comprehensive Product Catalog:** Dynamic pages for Motor, Health, Business, Travel, and Pet insurance.
-* **📝 Smart Quote Engine:** Interactive multi-step forms that validate user input using **Zod** before submission.
-* **💬 Live Chat Integration:** Real-time customer support widget.
-* **📧 Automated Notifications:** Instant email alerts for quotes and inquiries via **Nodemailer**.
-* **📱 Mobile-First Design:** Fully responsive layouts optimized for the Kenyan mobile market.
-* **⚡ SEO Optimized:** Server-side rendering (SSR) for maximum search engine visibility.
+* ** Comprehensive Product Catalog:** Dynamic pages for Motor, Health, Business, Travel, and Pet insurance.
+* ** Smart Quote Engine:** Interactive multi-step forms that validate user input using **Zod** before submission.
+* ** Live Chat Integration:** Real-time customer support widget.
+* ** Automated Notifications:** Instant email alerts for quotes and inquiries via **Nodemailer**.
+* ** Mobile-First Design:** Fully responsive layouts optimized for the Kenyan mobile market.
+* ** SEO Optimized:** Server-side rendering (SSR) for maximum search engine visibility.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Domain | Technologies |
 | :--- | :--- |
@@ -45,7 +45,7 @@ Traditionally, getting an insurance quote involves phone calls and manual paperw
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 To run this project locally:
 
@@ -75,13 +75,13 @@ To run this project locally:
 
 ---
 
-## 📩 Contact & Developer
+##  Contact & Developer
 
 **Caleb Kiune** *Full Stack Developer & Insurance Tech Specialist*
 
-* 📧 Email: calebkiune@gmail.com
-* 💼 LinkedIn: [Caleb Kiune](https://linkedin.com/in/caleb-kiune-b356a6327)
-* 🐙 GitHub: [@Caleb-Kiune](https://github.com/Caleb-Kiune)
+*  Email: calebkiune@gmail.com
+*  LinkedIn: [Caleb Kiune](https://linkedin.com/in/caleb-kiune-b356a6327)
+*  GitHub: [@Caleb-Kiune](https://github.com/Caleb-Kiune)
 
 ---
-<p align="center">Made with ❤️ by the Kentab Tech Team</p>
+<p align="center">Made by the Caleb Kiune</p>
