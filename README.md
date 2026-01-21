@@ -84,4 +84,4 @@ To run this project locally:
 *  GitHub: [@Caleb-Kiune](https://github.com/Caleb-Kiune)
 
 ---
-<p align="center">Made by the Caleb Kiune</p>
+<p align="center">Made by Caleb Kiune</p>
