@@ -40,9 +40,20 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur shadow-sm">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image src="/logo.png" alt="Kentab Insurance Agency" width={50} height={50} className="rounded-full" />
-            <span className="font-playfair font-bold text-xl text-primary-500">Kentab Insurance</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-14 w-14 md:h-16 md:w-16 transition-transform group-hover:scale-105">
+              <Image
+                src="/logo.PNG"
+                alt="Kentab Insurance"
+                fill
+                priority
+                sizes="(max-width: 768px) 56px, 64px"
+                className="object-contain"
+              />
+            </div>
+            <span className="font-playfair font-bold text-2xl md:text-3xl text-primary-500 leading-none">
+              Kentab Insurance
+            </span>
           </Link>
         </div>
 
