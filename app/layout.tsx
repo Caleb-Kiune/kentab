@@ -7,6 +7,7 @@ import Header from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/app/scroll-to-top"
 import { ChatWidget } from "@/components/chat-widget"
+import type { Metadata } from "next" 
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -18,10 +19,19 @@ const lora = Lora({
   variable: "--font-lora",
 })
 
-export const metadata = {
-  title: "Kentab Insurance Agency | Your Peace, Our Concern",
-  description: "Providing comprehensive insurance solutions for individuals and businesses in Kenya.",
-    generator: 'v0.dev'
+
+export const metadata: Metadata = {
+  title: {
+    default: "Kentab Insurance Agency | Your Peace, Our Concern",
+    template: "%s | Kentab Insurance Agency",
+  },
+  description: "Kentab Insurance Agency offers comprehensive motor, health, life, and business insurance solutions in Kenya. Protect your future with experts who care.",
+  keywords: ["Insurance Agency Kenya", "Motor Insurance Nairobi", "Health Insurance Kenya", "Kentab Insurance"],
+
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 }
 
 export default function RootLayout({
